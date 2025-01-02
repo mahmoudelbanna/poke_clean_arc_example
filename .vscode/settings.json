@@ -1,6 +1,12 @@
 {
     "cSpell.words": [
         "Bulbasaur",
-        "subprojects"
+        "gradlew",
+        "hprof",
+        "podspec",
+        "subprojects",
+        "xcconfig",
+        "xcframework",
+        "xcworkspace"
     ]
 }

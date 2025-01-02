@@ -11,6 +11,62 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+# Flutter/Dart/Pub related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+**/doc/api/
+**/ios/Flutter/.last_build_id
+
+
+# Android specific
+android/app/debug/
+android/app/profile/
+android/app/release/
+android/.gradle/
+android/.idea/
+android/local.properties
+android/gradle.properties
+**/gradlew
+**/gradlew.bat
+**/gradle-wrapper.properties
+gradle/wrapper/
+
+# iOS specific
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework/
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/.generated/
+ios/Flutter/App.framework/
+ios/Flutter/Debug.xcconfig
+ios/Flutter/Profile.xcconfig
+ios/Flutter/Release.xcconfig
+ios/Flutter/Flutter.xcframework/
+ios/Runner.xcworkspace/
+
+# macOS specific
+macos/Flutter/ephemeral/
+macos/.symlinks/
+macos/Pods/
+
+# Windows specific
+windows/flutter/ephemeral/
+
+# Linux specific
+linux/flutter/ephemeral/
+
+# Web specific
+web/.dart_tool/
+
+# JetBrains IDEs
+.idea/
+*.iml
 
 # IntelliJ related
 *.iml
@@ -18,28 +74,22 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# VS Code
+.vscode/
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
+# Generated files
+*.lock
+*.log
+*.pyc
+*.pyo
+*.swp
+*.DS_Store
+*.apk
+*.aar
+*.dSYM
+*.keystore
+*.hprof
 
-# Symbolication related
-app.*.symbols
-
-# Obfuscation related
-app.*.map.json
-
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# Firebase related
+ios/Runner/GoogleService-Info.plist
+android/app/google-services.json
