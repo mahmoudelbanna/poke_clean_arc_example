@@ -1,17 +1,10 @@
-# poke_clean_arc_example
+Poke Clean Arc Example is a Flutter-based demonstration project showcasing the implementation of the Clean Architecture pattern in a Pokémon-themed application.
+This project serves as a practical guide for developers looking to build scalable, maintainable, and testable mobile applications using best practices in software design.
 
-A new Flutter project.
+# Key Features:
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# poke_clean_arc_example
+Separation of Concerns: Implements distinct layers (Presentation, Domain, and Data) for clear responsibility separation.
+Dependency Injection: Utilizes tools like GetIt for managing dependencies efficiently.
+API Integration: Fetches Pokémon data using RESTful APIs.
+State Management: Demonstrates robust state management techniques using Bloc
+Modular Design: Promotes reusability and testability through modular components.
