@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_clean_arc_example/poke.dart';
 
-class UiFunctions {
-  const UiFunctions._();
-  static Future<dynamic> showModalPopup({
+class ShowModalPopup extends StatelessWidget {
+  const ShowModalPopup({
+    // ignore: unused_element
+    super.key,
+  });
+
+  Future<dynamic> _showModalPopup({
     required BuildContext context,
     required String pokemonId,
     required OnSelectedItemChangedFunction onSelectedItemChanged,
@@ -52,6 +57,27 @@ class UiFunctions {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final pokemonId = context.watch<SelectedPokemonItemCubit>().state.params.id;
+    return ElevatedButton(
+      onPressed: () => _showModalPopup(
+          context: context,
+          pokemonId: pokemonId,
+          onSelectedItemChanged: (int selectedItem) {
+            context.read<SelectedPokemonItemCubit>().changeParamsId(
+                  newId: selectedItem,
+                );
+          }),
+      child: Text(
+        '# ${int.parse(pokemonId) + 1}',
+        style: const TextStyle(
+          fontSize: 22.0,
         ),
       ),
     );

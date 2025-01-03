@@ -16,15 +16,15 @@ class SearchPokemonWidget extends StatelessWidget {
       child: Column(
         children: [
           const SearchData(),
-          const _SearchButton(),
+          const SearchButton(),
         ],
       ),
     );
   }
 }
 
-class _SearchButton extends StatelessWidget {
-  const _SearchButton({
+class SearchButton extends StatelessWidget {
+  const SearchButton({
     // ignore: unused_element
     super.key,
   });

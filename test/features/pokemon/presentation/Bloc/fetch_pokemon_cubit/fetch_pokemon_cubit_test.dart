@@ -4,9 +4,11 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:poke_clean_arc_example/poke.dart';
 
+import '../../../../../fixtures/test_pokemon_data.dart';
 import 'fetch_pokemon_cubit_test.mocks.dart';
 
 @GenerateMocks([GetPokemon])
+
 /// Tests for [FetchPokemonCubit].
 ///
 /// This test suite verifies that the Cubit correctly emits states
@@ -39,20 +41,9 @@ void main() {
     test('should emit [FetchPokemonLoading, FetchPokemonLoaded] when success',
         () async {
       // arrange
-      final tPokemonParams = PokemonParams(id: '1');
-      final tPokemon = PokemonEntity(
-        id: 1,
-        name: 'Bulbasaur',
-        types: [TypesEntity(type: TypeEntity(name: 'Grass'))],
-        sprites: SpritesEntity(
-          other: OtherEntity(
-            officialArtwork: OfficialArtworkEntity(
-              frontDefault: 'https://example.com/default.png',
-              frontShiny: 'https://example.com/shiny.png',
-            ),
-          ),
-        ),
-      );
+      final tPokemonParams = TestPokemonData.pokemonParams;
+      final tPokemon = TestPokemonData.pokemon;
+
       when(mockGetPokemon(params: anyNamed('params')))
           .thenAnswer((_) async => Right(tPokemon));
 
@@ -74,7 +65,7 @@ void main() {
     test('should emit [FetchPokemonLoading, FetchPokemonFailure] when failure',
         () async {
       // arrange
-      final tPokemonParams = PokemonParams(id: '1');
+      final tPokemonParams = TestPokemonData.pokemonParams;
       when(mockGetPokemon(params: anyNamed('params')))
           .thenAnswer((_) async => Left(ServerFailure(errorMessage: 'error')));
 

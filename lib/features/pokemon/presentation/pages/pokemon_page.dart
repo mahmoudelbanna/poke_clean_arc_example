@@ -10,7 +10,7 @@ class PokemonPage extends StatelessWidget {
     return BlocBuilder<FetchPokemonCubit, FetchPokemonState>(
       builder: (context, state) {
         if (state is FetchPokemonLoaded) {
-          return _PokemonPageData(
+          return PokemonPageData(
             pokemon: state.pokemon,
           );
         }
@@ -23,9 +23,9 @@ class PokemonPage extends StatelessWidget {
   }
 }
 
-class _PokemonPageData extends StatelessWidget {
+class PokemonPageData extends StatelessWidget {
   // ignore: unused_element
-  const _PokemonPageData({super.key, required PokemonEntity pokemon})
+  const PokemonPageData({super.key, required PokemonEntity pokemon})
       : _pokemon = pokemon;
   final PokemonEntity _pokemon;
 
@@ -36,8 +36,10 @@ class _PokemonPageData extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          PokemonWidget(
-            pokemon: _pokemon,
+          Expanded(
+            child: PokemonWidget(
+              pokemon: _pokemon,
+            ),
           ),
           SearchPokemonWidget(),
         ],

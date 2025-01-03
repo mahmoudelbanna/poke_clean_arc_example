@@ -1,7 +1,7 @@
-import 'package:poke_clean_arc_example/features/pokemon/pokemon.dart';
+import 'package:poke_clean_arc_example/poke.dart';
 
 class TestPokemonData {
-  static final PokemonEntity pokemon = PokemonEntity(
+  static final PokemonEntity pokemon = const PokemonEntity(
     id: 1,
     name: 'Bulbasaur',
     types: [TypesEntity(type: TypeEntity(name: 'Grass'))],
@@ -14,4 +14,6 @@ class TestPokemonData {
       ),
     ),
   );
+
+  static final PokemonParams pokemonParams = const PokemonParams(id: '1');
 }

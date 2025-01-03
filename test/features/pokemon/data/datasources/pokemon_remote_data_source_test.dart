@@ -9,6 +9,7 @@ import 'package:poke_clean_arc_example/poke.dart';
 
 import '../../../../fixtures/actual_article_json.dart';
 import '../../../../fixtures/fixture_reader.dart';
+import '../../../../fixtures/test_pokemon_data.dart';
 import 'pokemon_remote_data_source_test.mocks.dart';
 
 @GenerateMocks([Dio])
@@ -33,7 +34,7 @@ void main() {
     dataSource = PokemonRemoteDataSourceImpl(dio: mockDio);
   });
 
-  final tPokemonParams = PokemonParams(id: '1');
+  final tPokemonParams = TestPokemonData.pokemonParams;
   final RequestOptions requestOptions = RequestOptions();
   final String actualArticlesJson = fixture('pokemon.json');
   final url = '$kGetPokemonUrl/${tPokemonParams.id}';

@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:poke_clean_arc_example/poke.dart';
 
+import '../../../../fixtures/test_pokemon_data.dart';
 import 'pokemon_repository_impl_test.mocks.dart';
 
 @GenerateMocks([PokemonRemoteDataSource])
@@ -20,7 +21,7 @@ void main() {
     repository = PokemonRepositoryImpl(remoteDataSource: mockRemoteDataSource);
   });
 
-  final tPokemonParams = PokemonParams(id: '1');
+  final tPokemonParams = TestPokemonData.pokemonParams;
 
   final tPokemonModel = PokemonModel(
     id: 1,

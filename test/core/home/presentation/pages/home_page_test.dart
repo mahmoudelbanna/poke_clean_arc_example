@@ -7,9 +7,11 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:poke_clean_arc_example/poke.dart';
 
+import '../../../../fixtures/test_pokemon_data.dart';
 import 'home_page_test.mocks.dart';
 
 @GenerateMocks([SelectedPokemonItemCubit, FetchPokemonCubit, InternetCubit])
+
 /// The main function that runs the test suite for the home page.
 ///
 /// This function sets up MockCubits for [InternetCubit], [SelectedPokemonItemCubit],
@@ -53,19 +55,7 @@ void main() {
       ]),
     );
 
-    final tPokemon = PokemonEntity(
-      id: 1,
-      name: 'Bulbasaur',
-      types: [TypesEntity(type: TypeEntity(name: 'Grass'))],
-      sprites: SpritesEntity(
-        other: OtherEntity(
-          officialArtwork: OfficialArtworkEntity(
-            frontDefault: 'https://example.com/default.png',
-            frontShiny: 'https://example.com/shiny.png',
-          ),
-        ),
-      ),
-    );
+    final tPokemon = TestPokemonData.pokemon;
 
     when(mockFetchPokemonCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([

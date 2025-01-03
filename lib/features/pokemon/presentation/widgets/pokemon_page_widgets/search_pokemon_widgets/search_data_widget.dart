@@ -27,36 +27,8 @@ class SearchData extends StatelessWidget {
             ),
           ),
         ),
-        const _ShowModalPopup(),
+         const ShowModalPopup(),
       ],
-    );
-  }
-}
-
-class _ShowModalPopup extends StatelessWidget {
-  const _ShowModalPopup({
-    // ignore: unused_element
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final pokemonId = context.watch<SelectedPokemonItemCubit>().state.params.id;
-    return ElevatedButton(
-      onPressed: () => UiFunctions.showModalPopup(
-          context: context,
-          pokemonId: pokemonId,
-          onSelectedItemChanged: (int selectedItem) {
-            context.read<SelectedPokemonItemCubit>().changeParamsId(
-                  newId: selectedItem,
-                );
-          }),
-      child: Text(
-        '# ${int.parse(pokemonId) + 1}',
-        style: const TextStyle(
-          fontSize: 22.0,
-        ),
-      ),
     );
   }
 }

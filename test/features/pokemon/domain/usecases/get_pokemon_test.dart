@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import '../../../../fixtures/test_pokemon_data.dart';
 import 'get_pokemon_test.mocks.dart';
 import 'package:poke_clean_arc_example/poke.dart';
 
@@ -26,21 +27,9 @@ void main() {
     usecase = GetPokemon(repository: mockPokemonRepository);
   });
 
-  final tPokemonParams = PokemonParams(id: '1');
+  final tPokemonParams = TestPokemonData.pokemonParams;
 
-  final tPokemon = PokemonEntity(
-    id: 1,
-    name: 'Bulbasaur',
-    types: [TypesEntity(type: TypeEntity(name: 'Grass'))],
-    sprites: SpritesEntity(
-      other: OtherEntity(
-        officialArtwork: OfficialArtworkEntity(
-          frontDefault: 'https://example.com/default.png',
-          frontShiny: 'https://example.com/shiny.png',
-        ),
-      ),
-    ),
-  );
+  final tPokemon = TestPokemonData.pokemon;
 
   test(
     'should get pokemon',
