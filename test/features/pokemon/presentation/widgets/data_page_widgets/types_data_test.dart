@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:poke_clean_arc_example/poke.dart';
 
-import '../../../../fixtures/test_pokemon_data.dart';
+import '../../../../../fixtures/test_pokemon_data.dart';
 
 void main() {
   final tPokemon = TestPokemonData.pokemon;
