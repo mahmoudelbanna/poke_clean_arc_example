@@ -12,7 +12,7 @@ class DataWidget extends StatelessWidget {
         children: [
           ListTile(
             leading: const Text('API'),
-            title: Text('$kGetPokemonUrl{${pokemon.id}'),
+            title: Text('$kGetPokemonUrl${pokemon.id}'),
             tileColor: Colors.orange,
           ),
           ListTile(
