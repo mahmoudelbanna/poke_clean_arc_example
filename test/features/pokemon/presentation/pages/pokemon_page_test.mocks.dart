@@ -150,10 +150,50 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
           as bool);
 
   @override
+  String get id =>
+      (super.noSuchMethod(
+            Invocation.getter(#id),
+            returnValue: _i3.dummyValue<String>(this, Invocation.getter(#id)),
+          )
+          as String);
+
+  @override
+  String get storagePrefix =>
+      (super.noSuchMethod(
+            Invocation.getter(#storagePrefix),
+            returnValue: _i3.dummyValue<String>(
+              this,
+              Invocation.getter(#storagePrefix),
+            ),
+          )
+          as String);
+
+  @override
+  String get storageToken =>
+      (super.noSuchMethod(
+            Invocation.getter(#storageToken),
+            returnValue: _i3.dummyValue<String>(
+              this,
+              Invocation.getter(#storageToken),
+            ),
+          )
+          as String);
+
+  @override
   void changeParamsId({required int? newId}) => super.noSuchMethod(
     Invocation.method(#changeParamsId, [], {#newId: newId}),
     returnValueForMissingStub: null,
   );
+
+  @override
+  _i2.SelectedPokemonItemState? fromJson(Map<String, dynamic>? json) =>
+      (super.noSuchMethod(Invocation.method(#fromJson, [json]))
+          as _i2.SelectedPokemonItemState?);
+
+  @override
+  Map<String, dynamic>? toJson(_i2.SelectedPokemonItemState? state) =>
+      (super.noSuchMethod(Invocation.method(#toJson, [state]))
+          as Map<String, dynamic>?);
 
   @override
   void emit(_i2.SelectedPokemonItemState? state) => super.noSuchMethod(
@@ -184,6 +224,21 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
   _i4.Future<void> close() =>
       (super.noSuchMethod(
             Invocation.method(#close, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  void hydrate() => super.noSuchMethod(
+    Invocation.method(#hydrate, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  _i4.Future<void> clear() =>
+      (super.noSuchMethod(
+            Invocation.method(#clear, []),
             returnValue: _i4.Future<void>.value(),
             returnValueForMissingStub: _i4.Future<void>.value(),
           )

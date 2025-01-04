@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:poke_clean_arc_example/poke.dart';
 
 class NoParams {}
 
@@ -12,4 +13,16 @@ class PokemonParams extends Equatable {
 
   @override
   List<Object?> get props => [id];
+
+  Map<String, dynamic> toMap() {
+    return {
+      kId: id,
+    };
+  }
+
+  factory PokemonParams.fromMap(Map<String, dynamic> map) {
+    return PokemonParams(
+      id: map[kId] ?? '',
+    );
+  }
 }

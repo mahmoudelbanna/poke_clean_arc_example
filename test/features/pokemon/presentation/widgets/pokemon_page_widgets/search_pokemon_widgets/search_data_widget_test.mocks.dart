@@ -5,8 +5,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:flutter_bloc/flutter_bloc.dart' as _i4;
+import 'package:hydrated_bloc/hydrated_bloc.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i4;
 import 'package:poke_clean_arc_example/poke.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -63,10 +64,50 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
           as bool);
 
   @override
+  String get id =>
+      (super.noSuchMethod(
+            Invocation.getter(#id),
+            returnValue: _i4.dummyValue<String>(this, Invocation.getter(#id)),
+          )
+          as String);
+
+  @override
+  String get storagePrefix =>
+      (super.noSuchMethod(
+            Invocation.getter(#storagePrefix),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#storagePrefix),
+            ),
+          )
+          as String);
+
+  @override
+  String get storageToken =>
+      (super.noSuchMethod(
+            Invocation.getter(#storageToken),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#storageToken),
+            ),
+          )
+          as String);
+
+  @override
   void changeParamsId({required int? newId}) => super.noSuchMethod(
     Invocation.method(#changeParamsId, [], {#newId: newId}),
     returnValueForMissingStub: null,
   );
+
+  @override
+  _i2.SelectedPokemonItemState? fromJson(Map<String, dynamic>? json) =>
+      (super.noSuchMethod(Invocation.method(#fromJson, [json]))
+          as _i2.SelectedPokemonItemState?);
+
+  @override
+  Map<String, dynamic>? toJson(_i2.SelectedPokemonItemState? state) =>
+      (super.noSuchMethod(Invocation.method(#toJson, [state]))
+          as Map<String, dynamic>?);
 
   @override
   void emit(_i2.SelectedPokemonItemState? state) => super.noSuchMethod(
@@ -75,7 +116,7 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
   );
 
   @override
-  void onChange(_i4.Change<_i2.SelectedPokemonItemState>? change) =>
+  void onChange(_i5.Change<_i2.SelectedPokemonItemState>? change) =>
       super.noSuchMethod(
         Invocation.method(#onChange, [change]),
         returnValueForMissingStub: null,
@@ -97,6 +138,21 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
   _i3.Future<void> close() =>
       (super.noSuchMethod(
             Invocation.method(#close, []),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
+
+  @override
+  void hydrate() => super.noSuchMethod(
+    Invocation.method(#hydrate, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  _i3.Future<void> clear() =>
+      (super.noSuchMethod(
+            Invocation.method(#clear, []),
             returnValue: _i3.Future<void>.value(),
             returnValueForMissingStub: _i3.Future<void>.value(),
           )

@@ -6,9 +6,9 @@
 import 'dart:async' as _i4;
 
 import 'package:connectivity_plus/connectivity_plus.dart' as _i3;
-import 'package:flutter_bloc/flutter_bloc.dart' as _i5;
+import 'package:hydrated_bloc/hydrated_bloc.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i6;
+import 'package:mockito/src/dummies.dart' as _i5;
 import 'package:poke_clean_arc_example/poke.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -86,10 +86,50 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
           as bool);
 
   @override
+  String get id =>
+      (super.noSuchMethod(
+            Invocation.getter(#id),
+            returnValue: _i5.dummyValue<String>(this, Invocation.getter(#id)),
+          )
+          as String);
+
+  @override
+  String get storagePrefix =>
+      (super.noSuchMethod(
+            Invocation.getter(#storagePrefix),
+            returnValue: _i5.dummyValue<String>(
+              this,
+              Invocation.getter(#storagePrefix),
+            ),
+          )
+          as String);
+
+  @override
+  String get storageToken =>
+      (super.noSuchMethod(
+            Invocation.getter(#storageToken),
+            returnValue: _i5.dummyValue<String>(
+              this,
+              Invocation.getter(#storageToken),
+            ),
+          )
+          as String);
+
+  @override
   void changeParamsId({required int? newId}) => super.noSuchMethod(
     Invocation.method(#changeParamsId, [], {#newId: newId}),
     returnValueForMissingStub: null,
   );
+
+  @override
+  _i2.SelectedPokemonItemState? fromJson(Map<String, dynamic>? json) =>
+      (super.noSuchMethod(Invocation.method(#fromJson, [json]))
+          as _i2.SelectedPokemonItemState?);
+
+  @override
+  Map<String, dynamic>? toJson(_i2.SelectedPokemonItemState? state) =>
+      (super.noSuchMethod(Invocation.method(#toJson, [state]))
+          as Map<String, dynamic>?);
 
   @override
   void emit(_i2.SelectedPokemonItemState? state) => super.noSuchMethod(
@@ -98,7 +138,7 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
   );
 
   @override
-  void onChange(_i5.Change<_i2.SelectedPokemonItemState>? change) =>
+  void onChange(_i6.Change<_i2.SelectedPokemonItemState>? change) =>
       super.noSuchMethod(
         Invocation.method(#onChange, [change]),
         returnValueForMissingStub: null,
@@ -120,6 +160,21 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
   _i4.Future<void> close() =>
       (super.noSuchMethod(
             Invocation.method(#close, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  void hydrate() => super.noSuchMethod(
+    Invocation.method(#hydrate, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  _i4.Future<void> clear() =>
+      (super.noSuchMethod(
+            Invocation.method(#clear, []),
             returnValue: _i4.Future<void>.value(),
             returnValueForMissingStub: _i4.Future<void>.value(),
           )
@@ -146,7 +201,7 @@ class MockFetchPokemonCubit extends _i1.Mock implements _i2.FetchPokemonCubit {
   _i2.FetchPokemonState get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _i6.dummyValue<_i2.FetchPokemonState>(
+            returnValue: _i5.dummyValue<_i2.FetchPokemonState>(
               this,
               Invocation.getter(#state),
             ),
@@ -179,7 +234,7 @@ class MockFetchPokemonCubit extends _i1.Mock implements _i2.FetchPokemonCubit {
   );
 
   @override
-  void onChange(_i5.Change<_i2.FetchPokemonState>? change) =>
+  void onChange(_i6.Change<_i2.FetchPokemonState>? change) =>
       super.noSuchMethod(
         Invocation.method(#onChange, [change]),
         returnValueForMissingStub: null,
@@ -305,7 +360,7 @@ class MockInternetCubit extends _i1.Mock implements _i2.InternetCubit {
   );
 
   @override
-  void onChange(_i5.Change<_i2.InternetState>? change) => super.noSuchMethod(
+  void onChange(_i6.Change<_i2.InternetState>? change) => super.noSuchMethod(
     Invocation.method(#onChange, [change]),
     returnValueForMissingStub: null,
   );
