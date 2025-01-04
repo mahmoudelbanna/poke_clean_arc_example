@@ -37,8 +37,7 @@ class SearchButton extends StatelessWidget {
       textColor: Colors.white,
       iconColor: Colors.white,
       callback: () {
-        final id = (int.parse(pokemonId) + 1).toString();
-        final params = PokemonParams(id: id);
+        final params = PokemonParams(id: pokemonId);
         context.read<FetchPokemonCubit>().fetchPokemon(params: params);
       },
     );

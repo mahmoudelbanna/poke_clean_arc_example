@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -11,14 +13,24 @@ class InternetCubit extends Cubit<InternetState> {
   late StreamSubscription connectivityStreamSubscription;
 
   InternetCubit({required this.connectivity}) : super(InternetLoading()) {
-    connectivity.checkConnectivity().then((connectivityResult) {
-      // for ios issues
-      connectivityResultAction(connectivityResult);
-    });
-    connectivityStreamSubscription =
-        connectivity.onConnectivityChanged.listen((connectivityResult) {
-      connectivityResultAction(connectivityResult);
-    });
+    if (kDebugMode) {
+      if (Platform.isIOS) {
+        //! issues regarding to IOS Simulator
+        connectivity.checkConnectivity().then((connectivityResult) {
+          connectivityResultAction(connectivityResult);
+        });
+      } else {
+        connectivityStreamSubscription =
+            connectivity.onConnectivityChanged.listen((connectivityResult) {
+          connectivityResultAction(connectivityResult);
+        });
+      }
+    } else {
+      connectivityStreamSubscription =
+          connectivity.onConnectivityChanged.listen((connectivityResult) {
+        connectivityResultAction(connectivityResult);
+      });
+    }
   }
 
   void connectivityResultAction(List<ConnectivityResult> connectivityResult) {

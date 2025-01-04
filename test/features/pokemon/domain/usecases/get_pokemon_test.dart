@@ -1,26 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import '../../../../fixtures/test_pokemon_data.dart';
-import 'get_pokemon_test.mocks.dart';
+import 'package:mockito/annotations.dart';
 import 'package:poke_clean_arc_example/poke.dart';
 
+import '../../../../fixtures/test_pokemon_data.dart';
 @GenerateMocks([PokemonRepository])
-  /// Tests [GetPokemon] usecase.
-  ///
-  /// This test suite verifies that the [GetPokemon] usecase successfully retrieves
-  /// a pokemon from the repository.
-  ///
-  /// The test suite consists of a single test, which tests the above requirement.
-  ///
-  /// The test first sets up the required objects, then calls the [GetPokemon] usecase
-  /// with a test pokemon id, and finally asserts that the expected pokemon is
-  /// returned and that the repository method was called with the expected
-  /// pokemon id.
+import 'get_pokemon_test.mocks.dart';
+
 void main() {
-  late final GetPokemon usecase;
-  late final MockPokemonRepository mockPokemonRepository;
+  late GetPokemon usecase;
+  late MockPokemonRepository mockPokemonRepository;
 
   setUp(() {
     mockPokemonRepository = MockPokemonRepository();
@@ -28,22 +18,58 @@ void main() {
   });
 
   final tPokemonParams = TestPokemonData.pokemonParams;
-
-  final tPokemon = TestPokemonData.pokemon;
+  final adjustedId = (int.parse(tPokemonParams.id) + 1).toString();
+  final tAdjustedParams =
+      PokemonParams(id: adjustedId); // Because usecase adds 1 to the ID
+  final tPokemonEntity = TestPokemonData.pokemon;
 
   test(
-    'should get pokemon',
+    'should get pokemon entity from the repository',
     () async {
-      // Arrange
-      when(mockPokemonRepository.getPokemon(params: anyNamed('params')))
-          .thenAnswer((_) async => Right(tPokemon));
+      // arrange
+      when(mockPokemonRepository.getPokemon(params: tAdjustedParams))
+          .thenAnswer((_) async => Right(tPokemonEntity));
 
-      // Act
+      // act
       final result = await usecase(params: tPokemonParams);
 
-      // Assert
-      expect(result, Right(tPokemon));
-      verify(mockPokemonRepository.getPokemon(params: tPokemonParams));
+      // assert
+      expect(result, Right(tPokemonEntity));
+      verify(mockPokemonRepository.getPokemon(params: tAdjustedParams));
+      verifyNoMoreInteractions(mockPokemonRepository);
+    },
+  );
+
+  test(
+    'should return Failure when repository fails',
+    () async {
+      // arrange
+      final tFailure = ServerFailure(errorMessage: 'This is a server exception');
+      when(mockPokemonRepository.getPokemon(params: tAdjustedParams))
+          .thenAnswer((_) async => Left(tFailure));
+
+      // act
+      final result = await usecase(params: tPokemonParams);
+
+      // assert
+      expect(result, Left(tFailure));
+      verify(mockPokemonRepository.getPokemon(params: tAdjustedParams));
+      verifyNoMoreInteractions(mockPokemonRepository);
+    },
+  );
+
+  test(
+    'should adjust the ID by adding 1 before calling repository',
+    () async {
+      // arrange
+      when(mockPokemonRepository.getPokemon(params: tAdjustedParams))
+          .thenAnswer((_) async => Right(tPokemonEntity));
+
+      // act
+      await usecase(params: tPokemonParams);
+
+      // assert
+      verify(mockPokemonRepository.getPokemon(params: tAdjustedParams));
       verifyNoMoreInteractions(mockPokemonRepository);
     },
   );

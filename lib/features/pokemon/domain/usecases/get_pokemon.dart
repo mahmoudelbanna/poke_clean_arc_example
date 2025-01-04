@@ -9,6 +9,8 @@ class GetPokemon {
 
   Future<Either<Failure, PokemonEntity>> call(
       {required PokemonParams params}) async {
-    return await repository.getPokemon(params: params);
+    final adjustedId = (int.parse(params.id) + 1).toString();
+    final adjustedParams = PokemonParams(id: adjustedId);
+    return await repository.getPokemon(params: adjustedParams);
   }
 }
