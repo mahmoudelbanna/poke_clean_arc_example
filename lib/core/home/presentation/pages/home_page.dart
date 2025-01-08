@@ -3,43 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:poke_clean_arc_example/poke.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  late ValueNotifier<int> _currentPageIndex;
-
-  final List<Widget> _pages = [
-    const PokemonPage(),
-    const DataPage(),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    final params = context.read<SelectedPokemonItemCubit>().state.params;
-    context.read<FetchPokemonCubit>().fetchPokemon(params: params);
-    _currentPageIndex = ValueNotifier(0);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return InternetListener(
-      child: ValueListenableBuilder(
-        valueListenable: _currentPageIndex,
-        builder: (context, value, _) => Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: const Text('Poke Clean Arc Example'),
-          ),
-          body: _pages[_currentPageIndex.value],
-          bottomNavigationBar: NavBar(currentPageIndex: _currentPageIndex),
-        ),
-      ),
+    return BlocBuilder<InternetCubit, InternetState>(
+      builder: (context, state) {
+        if (state is InternetLoading) {
+          return const CircularProgressIndicator.adaptive();
+        } else if (state is InternetConnected) {
+          return const HomeWidget();
+        } else {
+          return const NoConnectionHomeErrorLoading();
+        }
+      },
     );
   }
 }

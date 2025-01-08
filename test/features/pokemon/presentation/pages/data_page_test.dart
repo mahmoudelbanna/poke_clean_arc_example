@@ -6,8 +6,8 @@ import 'package:mockito/mockito.dart';
 
 import 'package:poke_clean_arc_example/poke.dart';
 
-import '../../../../core/home/presentation/pages/home_page_test.mocks.dart';
 import '../../../../fixtures/test_pokemon_data.dart';
+import 'data_page_test.mocks.dart';
 
 @GenerateMocks([FetchPokemonCubit])
 void main() {

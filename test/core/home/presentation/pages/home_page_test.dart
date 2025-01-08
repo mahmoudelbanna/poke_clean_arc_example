@@ -1,32 +1,22 @@
-// ignore_for_file: unused_local_variable
-
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mockito/mockito.dart';
+import 'package:mockito/annotations.dart';
 import 'package:poke_clean_arc_example/poke.dart';
-
 import '../../../../fixtures/test_pokemon_data.dart';
 import 'home_page_test.mocks.dart';
 
-@GenerateMocks([SelectedPokemonItemCubit, FetchPokemonCubit, InternetCubit])
-
-/// The main function that runs the test suite for the home page.
-///
-/// This function sets up MockCubits for [InternetCubit], [SelectedPokemonItemCubit],
-/// and [FetchPokemonCubit]. It then creates a [MaterialApp] with a
-/// [MultiBlocProvider] that provides the MockCubits to the app.
-///
-/// Finally, it runs two tests:
-///
-/// 1. Verifies that the app displays the AppBar title and default page content.
-///
-/// 2. Verifies that the app navigates between pages using the NavBar.
+@GenerateMocks([
+  SelectedPokemonItemCubit,
+  FetchPokemonCubit,
+  InternetCubit,
+])
 void main() {
+  late MockInternetCubit mockInternetCubit;
   late MockSelectedPokemonItemCubit mockSelectedPokemonItemCubit;
   late MockFetchPokemonCubit mockFetchPokemonCubit;
-  late MockInternetCubit mockInternetCubit;
 
   setUpAll(() {
     provideDummy<FetchPokemonState>(FetchPokemonLoading());
@@ -37,23 +27,13 @@ void main() {
     mockSelectedPokemonItemCubit = MockSelectedPokemonItemCubit();
     mockFetchPokemonCubit = MockFetchPokemonCubit();
 
-    when(mockInternetCubit.state).thenReturn(
-      InternetConnected(connectionType: ConnectionType.connected),
-    );
-    when(mockInternetCubit.stream).thenAnswer(
-      (_) => Stream.fromIterable([
-        InternetConnected(connectionType: ConnectionType.connected),
-      ]),
-    );
-
+    // Setup default state for SelectedPokemonItemCubit
     when(mockSelectedPokemonItemCubit.state).thenReturn(
-      SelectedPokemonItemState(params: const PokemonParams(id: '1')),
+      const SelectedPokemonItemState(params: PokemonParams(id: '1')),
     );
-    when(mockSelectedPokemonItemCubit.stream).thenAnswer(
-      (_) => Stream.fromIterable([
-        SelectedPokemonItemState(params: const PokemonParams(id: '1')),
-      ]),
-    );
+    when(mockSelectedPokemonItemCubit.stream).thenAnswer((_) => Stream.value(
+          const SelectedPokemonItemState(params: PokemonParams(id: '1')),
+        ));
 
     final tPokemon = TestPokemonData.pokemon;
 
@@ -71,57 +51,112 @@ void main() {
     return MultiBlocProvider(
       providers: [
         BlocProvider<InternetCubit>(
-          create: (_) => mockInternetCubit,
+          create: (context) => mockInternetCubit,
         ),
         BlocProvider<SelectedPokemonItemCubit>(
-          create: (_) => mockSelectedPokemonItemCubit,
+          create: (context) => mockSelectedPokemonItemCubit,
         ),
         BlocProvider<FetchPokemonCubit>(
-          create: (_) => mockFetchPokemonCubit,
+          create: (context) => mockFetchPokemonCubit,
         ),
       ],
       child: const MaterialApp(
-        home: MyHomePage(),
+        home: Scaffold(
+          body: MyHomePage(),
+        ),
       ),
     );
   }
 
-  testWidgets('Displays AppBar title and default page content',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(createWidgetUnderTest());
-    await tester.pumpAndSettle(); // Wait for streams and state changes.
+  group('MyMyHomePage Tests', () {
+    testWidgets('shows MyHomePage when internet is connected',
+        (WidgetTester tester) async {
+      when(mockInternetCubit.state).thenReturn(
+        InternetConnected(connectionType: ConnectionType.connected),
+      );
+      when(mockInternetCubit.stream).thenAnswer(
+        (_) => Stream.fromIterable([
+          InternetConnected(connectionType: ConnectionType.connected),
+        ]),
+      );
 
-    // Verify the AppBar title
-    expect(find.text('Poke Clean Arc Example'), findsOneWidget);
+      await tester.pumpWidget(createWidgetUnderTest());
+      await tester.pumpAndSettle();
 
-    // Verify the default page content (PokemonPage)
-    expect(find.byType(PokemonPage), findsOneWidget);
-  });
+      expect(find.byType(HomeWidget), findsOneWidget);
+      expect(find.byType(NoConnectionHomeErrorLoading), findsNothing);
+    });
 
-  testWidgets('Navigates between pages using NavBar',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(createWidgetUnderTest());
-    await tester.pumpAndSettle(); // Wait for streams and state changes.
+    testWidgets(
+        'shows NoConnectionHomeErrorLoading when internet is disconnected',
+        (WidgetTester tester) async {
+      when(mockInternetCubit.state).thenReturn(
+        const InternetDisconnected(),
+      );
+      when(mockInternetCubit.stream).thenAnswer(
+        (_) => Stream.fromIterable([
+          const InternetDisconnected(),
+        ]),
+      );
 
-    // Verify initial page is PokemonPage
-    expect(find.byType(PokemonPage), findsOneWidget);
+      await tester.pumpWidget(createWidgetUnderTest());
+      // as there is repeat animation on NoConnectionHomeErrorLoading
+      await tester.pump(const Duration(seconds: 1));
 
-    // Simulate tapping on the NavBar to switch to DataPage
-    final navBarItemDataPage =
-        find.byIcon(Icons.menu).first; // Replace with actual icon
-    await tester.tap(navBarItemDataPage);
-    await tester.pumpAndSettle();
+      expect(find.byType(NoConnectionHomeErrorLoading), findsOneWidget);
+      expect(find.byType(HomeWidget), findsNothing);
+    });
 
-    // Verify the new page content (DataPage)
-    expect(find.byType(DataPage), findsOneWidget);
+    testWidgets('shows NoConnectionHomeErrorLoading when internet is loading',
+        (WidgetTester tester) async {
+      when(mockInternetCubit.state).thenReturn(
+        const InternetLoading(),
+      );
+      when(mockInternetCubit.stream).thenAnswer(
+        (_) => Stream.fromIterable([
+          const InternetLoading(),
+        ]),
+      );
 
-    // Simulate tapping on the NavBar to switch to PokemonPage
-    final navBarItemPokemonPage =
-        find.byIcon(Icons.search_outlined).first; // Replace with actual icon
-    await tester.tap(navBarItemPokemonPage);
-    await tester.pumpAndSettle();
+      await tester.pumpWidget(createWidgetUnderTest());
+      await tester.pump(const Duration(seconds: 1));
 
-    // Verify the new page content (PokemonPage)
-    expect(find.byType(PokemonPage), findsOneWidget);
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      expect(find.byType(NoConnectionHomeErrorLoading), findsNothing);
+      expect(find.byType(HomeWidget), findsNothing);
+    });
+
+    testWidgets('updates UI when internet state changes',
+        (WidgetTester tester) async {
+      // Create a broadcast stream controller
+      final streamController = StreamController<InternetState>.broadcast();
+
+      // Mock the cubit's state and stream
+      when(mockInternetCubit.stream).thenAnswer((_) => streamController.stream);
+      when(mockInternetCubit.state).thenReturn(InternetDisconnected());
+
+      // Render the widget
+      await tester.pumpWidget(createWidgetUnderTest());
+      await tester.pump(); // Allow initial build
+
+      // Verify the initial state
+      expect(find.byType(NoConnectionHomeErrorLoading), findsOneWidget);
+      expect(find.byType(HomeWidget), findsNothing);
+
+      // Update the state to InternetConnected
+      when(mockInternetCubit.state).thenReturn(
+          InternetConnected(connectionType: ConnectionType.connected));
+      streamController
+          .add(InternetConnected(connectionType: ConnectionType.connected));
+
+      await tester.pumpAndSettle(); // Wait for animations and state changes
+
+      // Verify the updated state
+      expect(find.byType(HomeWidget), findsOneWidget);
+      expect(find.byType(NoConnectionHomeErrorLoading), findsNothing);
+
+      // Clean up
+      await streamController.close();
+    });
   });
 }
