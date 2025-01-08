@@ -3,12 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:connectivity_plus/connectivity_plus.dart' as _i3;
-import 'package:hydrated_bloc/hydrated_bloc.dart' as _i6;
+import 'package:hydrated_bloc/hydrated_bloc.dart' as _i7;
+import 'package:internet_connection_checker/internet_connection_checker.dart'
+    as _i4;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i5;
+import 'package:mockito/src/dummies.dart' as _i6;
 import 'package:poke_clean_arc_example/poke.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -41,14 +43,20 @@ class _FakeConnectivity_2 extends _i1.SmartFake implements _i3.Connectivity {
     : super(parent, parentInvocation);
 }
 
-class _FakeStreamSubscription_3<T> extends _i1.SmartFake
-    implements _i4.StreamSubscription<T> {
-  _FakeStreamSubscription_3(Object parent, Invocation parentInvocation)
+class _FakeInternetConnectionChecker_3 extends _i1.SmartFake
+    implements _i4.InternetConnectionChecker {
+  _FakeInternetConnectionChecker_3(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeInternetState_4 extends _i1.SmartFake implements _i2.InternetState {
-  _FakeInternetState_4(Object parent, Invocation parentInvocation)
+class _FakeStreamSubscription_4<T> extends _i1.SmartFake
+    implements _i5.StreamSubscription<T> {
+  _FakeStreamSubscription_4(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeInternetState_5 extends _i1.SmartFake implements _i2.InternetState {
+  _FakeInternetState_5(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -73,12 +81,12 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
           as _i2.SelectedPokemonItemState);
 
   @override
-  _i4.Stream<_i2.SelectedPokemonItemState> get stream =>
+  _i5.Stream<_i2.SelectedPokemonItemState> get stream =>
       (super.noSuchMethod(
             Invocation.getter(#stream),
-            returnValue: _i4.Stream<_i2.SelectedPokemonItemState>.empty(),
+            returnValue: _i5.Stream<_i2.SelectedPokemonItemState>.empty(),
           )
-          as _i4.Stream<_i2.SelectedPokemonItemState>);
+          as _i5.Stream<_i2.SelectedPokemonItemState>);
 
   @override
   bool get isClosed =>
@@ -89,7 +97,7 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
   String get id =>
       (super.noSuchMethod(
             Invocation.getter(#id),
-            returnValue: _i5.dummyValue<String>(this, Invocation.getter(#id)),
+            returnValue: _i6.dummyValue<String>(this, Invocation.getter(#id)),
           )
           as String);
 
@@ -97,7 +105,7 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
   String get storagePrefix =>
       (super.noSuchMethod(
             Invocation.getter(#storagePrefix),
-            returnValue: _i5.dummyValue<String>(
+            returnValue: _i6.dummyValue<String>(
               this,
               Invocation.getter(#storagePrefix),
             ),
@@ -108,7 +116,7 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
   String get storageToken =>
       (super.noSuchMethod(
             Invocation.getter(#storageToken),
-            returnValue: _i5.dummyValue<String>(
+            returnValue: _i6.dummyValue<String>(
               this,
               Invocation.getter(#storageToken),
             ),
@@ -138,7 +146,7 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
   );
 
   @override
-  void onChange(_i6.Change<_i2.SelectedPokemonItemState>? change) =>
+  void onChange(_i7.Change<_i2.SelectedPokemonItemState>? change) =>
       super.noSuchMethod(
         Invocation.method(#onChange, [change]),
         returnValueForMissingStub: null,
@@ -157,13 +165,13 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
   );
 
   @override
-  _i4.Future<void> close() =>
+  _i5.Future<void> close() =>
       (super.noSuchMethod(
             Invocation.method(#close, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
           )
-          as _i4.Future<void>);
+          as _i5.Future<void>);
 
   @override
   void hydrate() => super.noSuchMethod(
@@ -172,13 +180,13 @@ class MockSelectedPokemonItemCubit extends _i1.Mock
   );
 
   @override
-  _i4.Future<void> clear() =>
+  _i5.Future<void> clear() =>
       (super.noSuchMethod(
             Invocation.method(#clear, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
           )
-          as _i4.Future<void>);
+          as _i5.Future<void>);
 }
 
 /// A class which mocks [FetchPokemonCubit].
@@ -201,7 +209,7 @@ class MockFetchPokemonCubit extends _i1.Mock implements _i2.FetchPokemonCubit {
   _i2.FetchPokemonState get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _i5.dummyValue<_i2.FetchPokemonState>(
+            returnValue: _i6.dummyValue<_i2.FetchPokemonState>(
               this,
               Invocation.getter(#state),
             ),
@@ -209,12 +217,12 @@ class MockFetchPokemonCubit extends _i1.Mock implements _i2.FetchPokemonCubit {
           as _i2.FetchPokemonState);
 
   @override
-  _i4.Stream<_i2.FetchPokemonState> get stream =>
+  _i5.Stream<_i2.FetchPokemonState> get stream =>
       (super.noSuchMethod(
             Invocation.getter(#stream),
-            returnValue: _i4.Stream<_i2.FetchPokemonState>.empty(),
+            returnValue: _i5.Stream<_i2.FetchPokemonState>.empty(),
           )
-          as _i4.Stream<_i2.FetchPokemonState>);
+          as _i5.Stream<_i2.FetchPokemonState>);
 
   @override
   bool get isClosed =>
@@ -234,7 +242,7 @@ class MockFetchPokemonCubit extends _i1.Mock implements _i2.FetchPokemonCubit {
   );
 
   @override
-  void onChange(_i6.Change<_i2.FetchPokemonState>? change) =>
+  void onChange(_i7.Change<_i2.FetchPokemonState>? change) =>
       super.noSuchMethod(
         Invocation.method(#onChange, [change]),
         returnValueForMissingStub: null,
@@ -253,13 +261,13 @@ class MockFetchPokemonCubit extends _i1.Mock implements _i2.FetchPokemonCubit {
   );
 
   @override
-  _i4.Future<void> close() =>
+  _i5.Future<void> close() =>
       (super.noSuchMethod(
             Invocation.method(#close, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
           )
-          as _i4.Future<void>);
+          as _i5.Future<void>);
 }
 
 /// A class which mocks [InternetCubit].
@@ -282,19 +290,30 @@ class MockInternetCubit extends _i1.Mock implements _i2.InternetCubit {
           as _i3.Connectivity);
 
   @override
-  _i4.StreamSubscription<dynamic> get connectivityStreamSubscription =>
+  _i4.InternetConnectionChecker get connectionChecker =>
+      (super.noSuchMethod(
+            Invocation.getter(#connectionChecker),
+            returnValue: _FakeInternetConnectionChecker_3(
+              this,
+              Invocation.getter(#connectionChecker),
+            ),
+          )
+          as _i4.InternetConnectionChecker);
+
+  @override
+  _i5.StreamSubscription<dynamic> get connectivityStreamSubscription =>
       (super.noSuchMethod(
             Invocation.getter(#connectivityStreamSubscription),
-            returnValue: _FakeStreamSubscription_3<dynamic>(
+            returnValue: _FakeStreamSubscription_4<dynamic>(
               this,
               Invocation.getter(#connectivityStreamSubscription),
             ),
           )
-          as _i4.StreamSubscription<dynamic>);
+          as _i5.StreamSubscription<dynamic>);
 
   @override
   set connectivityStreamSubscription(
-    _i4.StreamSubscription<dynamic>? _connectivityStreamSubscription,
+    _i5.StreamSubscription<dynamic>? _connectivityStreamSubscription,
   ) => super.noSuchMethod(
     Invocation.setter(
       #connectivityStreamSubscription,
@@ -304,20 +323,42 @@ class MockInternetCubit extends _i1.Mock implements _i2.InternetCubit {
   );
 
   @override
+  _i5.StreamSubscription<dynamic> get internetCheckerSubscription =>
+      (super.noSuchMethod(
+            Invocation.getter(#internetCheckerSubscription),
+            returnValue: _FakeStreamSubscription_4<dynamic>(
+              this,
+              Invocation.getter(#internetCheckerSubscription),
+            ),
+          )
+          as _i5.StreamSubscription<dynamic>);
+
+  @override
+  set internetCheckerSubscription(
+    _i5.StreamSubscription<dynamic>? _internetCheckerSubscription,
+  ) => super.noSuchMethod(
+    Invocation.setter(
+      #internetCheckerSubscription,
+      _internetCheckerSubscription,
+    ),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   _i2.InternetState get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _FakeInternetState_4(this, Invocation.getter(#state)),
+            returnValue: _FakeInternetState_5(this, Invocation.getter(#state)),
           )
           as _i2.InternetState);
 
   @override
-  _i4.Stream<_i2.InternetState> get stream =>
+  _i5.Stream<_i2.InternetState> get stream =>
       (super.noSuchMethod(
             Invocation.getter(#stream),
-            returnValue: _i4.Stream<_i2.InternetState>.empty(),
+            returnValue: _i5.Stream<_i2.InternetState>.empty(),
           )
-          as _i4.Stream<_i2.InternetState>);
+          as _i5.Stream<_i2.InternetState>);
 
   @override
   bool get isClosed =>
@@ -345,13 +386,13 @@ class MockInternetCubit extends _i1.Mock implements _i2.InternetCubit {
   );
 
   @override
-  _i4.Future<void> close() =>
+  _i5.Future<void> close() =>
       (super.noSuchMethod(
             Invocation.method(#close, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
           )
-          as _i4.Future<void>);
+          as _i5.Future<void>);
 
   @override
   void emit(_i2.InternetState? state) => super.noSuchMethod(
@@ -360,7 +401,7 @@ class MockInternetCubit extends _i1.Mock implements _i2.InternetCubit {
   );
 
   @override
-  void onChange(_i6.Change<_i2.InternetState>? change) => super.noSuchMethod(
+  void onChange(_i7.Change<_i2.InternetState>? change) => super.noSuchMethod(
     Invocation.method(#onChange, [change]),
     returnValueForMissingStub: null,
   );
