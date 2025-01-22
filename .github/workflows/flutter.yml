@@ -1,0 +1,34 @@
+name: Flutter CI/CD
+
+on:
+  push:
+    branches:
+      - main
+     
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout My Code 
+        uses: actions/checkout@v4
+
+      - name: Install Flutter Version 3.24.5
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'  
+          flutter-version: '3.24.0' # Use the required Flutter version
+      - run: flutter --version  
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Our Test
+        run: flutter test
+
+     
+      
