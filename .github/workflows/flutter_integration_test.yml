@@ -1,0 +1,66 @@
+name: Flutter Integration Tests
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  android:
+    name: Android Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Verify Flutter Version
+        run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Start Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          profile: pixel
+          script: |
+            adb wait-for-device
+            flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart
+
+  ios:
+    name: iOS Integration Tests
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Verify Flutter Version
+        run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Start iOS Simulator
+        run: |
+          xcrun simctl shutdown all
+          xcrun simctl boot "iPhone 14"
+          xcrun simctl list
+
+      - name: Run iOS Integration Tests
+        run: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart

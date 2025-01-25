@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -29,12 +27,8 @@ class InternetCubit extends Cubit<InternetState> {
   /// using the `connectivityResultAction`.
 
   void _initializeConnectivityChecking() {
-    if (kDebugMode && Platform.isIOS) {
-      connectivity.checkConnectivity().then(connectivityResultAction);
-    } else {
-      connectivityStreamSubscription =
-          connectivity.onConnectivityChanged.listen(connectivityResultAction);
-    }
+    connectivityStreamSubscription =
+        connectivity.onConnectivityChanged.listen(connectivityResultAction);
   }
 
   /// Initializes the internet checking process.
