@@ -9,33 +9,42 @@ on:
     branches:
       - main
       - dev
-
 jobs:
   android:
     name: Android Integration Tests
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Step 2: Install Flutter
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
 
-      - name: Verify Flutter Version
-        run: flutter --version
-
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Start Android Emulator
+      # Step 4: Set up Android Emulator
+      - name: Set up Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
+          target: google_apis
+          arch: x86_64
           profile: pixel
+          disk-size: 10G
+          heap-size: 2048m
+          emulator-options: "-no-window -no-audio -gpu swiftshader_indirect"
           script: |
             adb wait-for-device
+            adb shell getprop sys.boot_completed | grep -m 1 '1'
+            adb shell settings put global window_animation_scale 0.0
+            adb shell settings put global transition_animation_scale 0.0
+            adb shell settings put global animator_duration_scale 0.0
             flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart
 
   ios:
@@ -56,11 +65,10 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Start iOS Simulator
+      - name: Start iOS simulator
         run: |
-          xcrun simctl shutdown all
-          xcrun simctl boot "iPhone 14"
-          xcrun simctl list
-
-      - name: Run iOS Integration Tests
+          xcrun simctl create testDevice com.apple.CoreSimulator.SimDeviceType.iPhone-14
+          xcrun simctl boot testDevice
+      
+      - name: Run iOS integration tests
         run: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart

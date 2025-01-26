@@ -72,7 +72,7 @@ void main() {
       final navBarItemDataPage = find.byIcon(Icons.menu);
       expect(navBarItemDataPage, findsOneWidget);
       await tester.tap(navBarItemDataPage);
-      await tester.pumpAndSettle();
+      await tester.pumpAndSettle(const Duration(seconds: 3));
 
       // Verify correct navigation to DataPage
       expect(find.byType(DataPage), findsOneWidget);
@@ -82,7 +82,7 @@ void main() {
       final navBarItemPokemonPage = find.byIcon(Icons.search_outlined);
       expect(navBarItemPokemonPage, findsOneWidget); 
       await tester.tap(navBarItemPokemonPage);
-      await tester.pumpAndSettle();
+      await tester.pumpAndSettle(const Duration(seconds: 3));
 
       // Verify correct navigation back to PokemonPage
       expect(find.byType(PokemonPage), findsOneWidget);
