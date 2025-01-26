@@ -1,0 +1,38 @@
+name: IOS Integration Tests
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  integration_tests:
+    name: iOS Integration Tests
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      
+      - name: Verify Flutter Version
+        run: flutter --version
+      
+      - name: Install dependencies
+        run: flutter pub get
+      
+      - name: Start iOS simulator
+        run: |
+          xcrun simctl create testDevice com.apple.CoreSimulator.SimDeviceType.iPhone-14
+          xcrun simctl boot testDevice
+          sleep 60 # Wait for simulator to fully boot
+      
+      - name: Run iOS integration tests
+        run: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart
