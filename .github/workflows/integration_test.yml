@@ -12,7 +12,7 @@ on:
 jobs:
   integration_tests:
     name: iOS Integration Tests
-    runs-on: macos-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
