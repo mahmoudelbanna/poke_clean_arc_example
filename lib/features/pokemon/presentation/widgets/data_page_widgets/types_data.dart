@@ -10,7 +10,7 @@ class Types extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(leading: const Text('[ ]'), title: const Text(kTypes)),
+        const ListTile(leading: Text('[ ]'), title: Text(kTypes)),
         _Type(pokemon: pokemon),
       ],
     );
@@ -35,7 +35,7 @@ class _Type extends StatelessWidget {
           pokemon.types.length,
           (index) => Column(
             children: [
-              ListTile(leading: const Text('{ }'), title: const Text(kType)),
+              const ListTile(leading: Text('{ }'), title: Text(kType)),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: ListTile(

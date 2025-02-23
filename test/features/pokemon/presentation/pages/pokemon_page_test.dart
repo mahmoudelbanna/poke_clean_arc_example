@@ -14,18 +14,18 @@ void main() {
   late MockFetchPokemonCubit mockFetchPokemonCubit;
   late MockSelectedPokemonItemCubit mockSelectedPokemonItemCubit;
   setUpAll(() {
-    provideDummy<FetchPokemonState>(FetchPokemonLoading());
+    provideDummy<FetchPokemonState>(const FetchPokemonLoading());
   });
 
   setUp(() {
     mockFetchPokemonCubit = MockFetchPokemonCubit();
     mockSelectedPokemonItemCubit = MockSelectedPokemonItemCubit();
     when(mockSelectedPokemonItemCubit.state).thenReturn(
-      SelectedPokemonItemState(params: const PokemonParams(id: '1')),
+      const SelectedPokemonItemState(params: PokemonParams(id: '1')),
     );
     when(mockSelectedPokemonItemCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
-        SelectedPokemonItemState(params: const PokemonParams(id: '1')),
+        const SelectedPokemonItemState(params: PokemonParams(id: '1')),
       ]),
     );
   });
@@ -47,8 +47,8 @@ void main() {
   ) async {
     when(
       mockFetchPokemonCubit.stream,
-    ).thenAnswer((_) => Stream.fromIterable([FetchPokemonLoading()]));
-    when(mockFetchPokemonCubit.state).thenReturn(FetchPokemonLoading());
+    ).thenAnswer((_) => Stream.fromIterable([const FetchPokemonLoading()]));
+    when(mockFetchPokemonCubit.state).thenReturn(const FetchPokemonLoading());
 
     await tester.pumpWidget(createWidgetUnderTest());
 
@@ -62,7 +62,7 @@ void main() {
 
     when(mockFetchPokemonCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
-        FetchPokemonLoading(),
+        const FetchPokemonLoading(),
         FetchPokemonLoaded(pokemon: tPokemon),
       ]),
     );
@@ -81,13 +81,13 @@ void main() {
     const errorMessage = 'Failed to fetch data';
     when(mockFetchPokemonCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
-        FetchPokemonLoading(),
-        FetchPokemonFailure(message: errorMessage),
+        const FetchPokemonLoading(),
+        const FetchPokemonFailure(message: errorMessage),
       ]),
     );
     when(
       mockFetchPokemonCubit.state,
-    ).thenReturn(FetchPokemonFailure(message: errorMessage));
+    ).thenReturn(const FetchPokemonFailure(message: errorMessage));
 
     await tester.pumpWidget(createWidgetUnderTest());
 

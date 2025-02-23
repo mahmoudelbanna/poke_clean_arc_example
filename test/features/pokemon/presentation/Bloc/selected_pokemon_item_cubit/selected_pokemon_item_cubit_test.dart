@@ -54,7 +54,7 @@ void main() {
     group('hydration', () {
       test('should convert state to JSON', () {
         // arrange
-        final state = SelectedPokemonItemState(params: PokemonParams(id: '3'));
+        final state = const SelectedPokemonItemState(params: PokemonParams(id: '3'));
 
         // act
         final json = cubit.toJson(state);
@@ -80,7 +80,7 @@ void main() {
         // assert
         expect(
           state,
-          equals(SelectedPokemonItemState(params: PokemonParams(id: '3'))),
+          equals(const SelectedPokemonItemState(params: PokemonParams(id: '3'))),
         );
       });
 

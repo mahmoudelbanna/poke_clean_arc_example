@@ -23,7 +23,7 @@ void main() {
 
   final tPokemonParams = TestPokemonData.pokemonParams;
 
-  final tPokemonModel = PokemonModel(
+  final tPokemonModel = const PokemonModel(
     id: 1,
     name: 'Bulbasaur',
     types: [TypesEntity(type: TypeEntity(name: 'Grass'))],
@@ -65,7 +65,7 @@ void main() {
       // assert
       expect(
         result,
-        equals(Left(ServerFailure(errorMessage: 'This is a server exception'))),
+        equals(const Left(ServerFailure(errorMessage: 'This is a server exception'))),
       );
       verify(mockRemoteDataSource.getPokemon(params: tPokemonParams));
     },

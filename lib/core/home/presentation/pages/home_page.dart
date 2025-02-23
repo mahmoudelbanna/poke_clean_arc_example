@@ -10,7 +10,7 @@ class MyHomePage extends StatelessWidget {
     return BlocBuilder<InternetCubit, InternetState>(
       builder: (context, state) {
         if (state is InternetLoading) {
-          return LoadingInternet();
+          return const LoadingInternet();
         } else if (state is InternetConnected) {
           return const HomeWidget();
         } else {

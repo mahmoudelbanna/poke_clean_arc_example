@@ -14,7 +14,7 @@ import '../../../../fixtures/fixture_reader.dart';
 ///    correct
 /// 3. PokemonModel.toJson() returns a JSON map containing the proper data
 void main() {
-  final PokemonModel tPokemonModel = PokemonModel(
+  final PokemonModel tPokemonModel = const PokemonModel(
     name: 'name',
     id: 1,
     sprites: SpritesModel(

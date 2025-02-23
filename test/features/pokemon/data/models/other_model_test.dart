@@ -6,7 +6,7 @@ import 'package:poke_clean_arc_example/poke.dart';
 /// This test verifies that the OtherModel instance is a subclass of OtherEntity.
 
 void main() {
-  final OtherModel tOtherModel = OtherModel(
+  final OtherModel tOtherModel = const OtherModel(
     officialArtwork: OfficialArtworkModel(
       frontDefault: 'frontDefault',
       frontShiny: 'frontShiny',

@@ -6,7 +6,7 @@ import 'package:poke_clean_arc_example/poke.dart';
 /// It creates a [SpritesModel] instance and asserts that it is a subclass of
 /// [SpritesEntity].
 void main() {
-  final SpritesModel tSpritesModel = SpritesModel(
+  final SpritesModel tSpritesModel = const SpritesModel(
     other: OtherModel(
       officialArtwork: OfficialArtworkModel(
         frontDefault: 'frontDefault',

@@ -50,7 +50,7 @@ void main() {
       const emptyPokemonTypes = <TypesEntity>[];
 
       Widget createWidgetUnderTest() {
-        return MaterialApp(
+        return const MaterialApp(
           home: Scaffold(body: PokemonTypes(pokemonTypes: emptyPokemonTypes)),
         );
       }

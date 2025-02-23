@@ -13,7 +13,7 @@ import 'data_page_test.mocks.dart';
 void main() {
   late MockFetchPokemonCubit mockFetchPokemonCubit;
   setUpAll(() {
-    provideDummy<FetchPokemonState>(FetchPokemonLoading());
+    provideDummy<FetchPokemonState>(const FetchPokemonLoading());
   });
 
   setUp(() {
@@ -32,8 +32,8 @@ void main() {
   ) async {
     when(
       mockFetchPokemonCubit.stream,
-    ).thenAnswer((_) => Stream.fromIterable([FetchPokemonLoading()]));
-    when(mockFetchPokemonCubit.state).thenReturn(FetchPokemonLoading());
+    ).thenAnswer((_) => Stream.fromIterable([const FetchPokemonLoading()]));
+    when(mockFetchPokemonCubit.state).thenReturn(const FetchPokemonLoading());
 
     await tester.pumpWidget(createWidgetUnderTest());
 
@@ -47,7 +47,7 @@ void main() {
 
     when(mockFetchPokemonCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
-        FetchPokemonLoading(),
+        const FetchPokemonLoading(),
         FetchPokemonLoaded(pokemon: tPokemon),
       ]),
     );
@@ -66,13 +66,13 @@ void main() {
     const errorMessage = 'Failed to fetch data';
     when(mockFetchPokemonCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
-        FetchPokemonLoading(),
-        FetchPokemonFailure(message: errorMessage),
+        const FetchPokemonLoading(),
+        const FetchPokemonFailure(message: errorMessage),
       ]),
     );
     when(
       mockFetchPokemonCubit.state,
-    ).thenReturn(FetchPokemonFailure(message: errorMessage));
+    ).thenReturn(const FetchPokemonFailure(message: errorMessage));
 
     await tester.pumpWidget(createWidgetUnderTest());
 

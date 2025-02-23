@@ -28,7 +28,7 @@ void main() {
   late MockInternetCubit mockInternetCubit;
 
   setUpAll(() {
-    provideDummy<FetchPokemonState>(FetchPokemonLoading());
+    provideDummy<FetchPokemonState>(const FetchPokemonLoading());
   });
 
   setUp(() {
@@ -38,19 +38,19 @@ void main() {
 
     when(
       mockInternetCubit.state,
-    ).thenReturn(InternetConnected(connectionType: ConnectionType.connected));
+    ).thenReturn(const InternetConnected(connectionType: ConnectionType.connected));
     when(mockInternetCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
-        InternetConnected(connectionType: ConnectionType.connected),
+        const InternetConnected(connectionType: ConnectionType.connected),
       ]),
     );
 
     when(mockSelectedPokemonItemCubit.state).thenReturn(
-      SelectedPokemonItemState(params: const PokemonParams(id: '1')),
+      const SelectedPokemonItemState(params: PokemonParams(id: '1')),
     );
     when(mockSelectedPokemonItemCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
-        SelectedPokemonItemState(params: const PokemonParams(id: '1')),
+        const SelectedPokemonItemState(params: PokemonParams(id: '1')),
       ]),
     );
 
@@ -58,12 +58,12 @@ void main() {
 
     when(mockFetchPokemonCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
-        FetchPokemonLoading(),
+        const FetchPokemonLoading(),
         FetchPokemonLoaded(pokemon: tPokemon),
       ]),
     );
 
-    when(mockFetchPokemonCubit.state).thenReturn(FetchPokemonLoading());
+    when(mockFetchPokemonCubit.state).thenReturn(const FetchPokemonLoading());
   });
 
   Widget createWidgetUnderTest() {

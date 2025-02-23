@@ -59,7 +59,7 @@ class _NoConnectionHomeErrorLoadingState
                               : Colors.red,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     state is InternetConnected
                         ? "You're online!"

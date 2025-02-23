@@ -8,7 +8,7 @@ import 'package:poke_clean_arc_example/poke.dart';
 /// checking its type.
 
 void main() {
-  final TypesModel tTypesModel = TypesModel(type: TypeEntity(name: 'Grass'));
+  final TypesModel tTypesModel = const TypesModel(type: TypeEntity(name: 'Grass'));
   test('should be a subclass of TypesEntity entity', () async {
     // assert
     expect(tTypesModel, isA<TypesEntity>());

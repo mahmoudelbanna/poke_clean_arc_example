@@ -94,7 +94,7 @@ void main() {
           // act
           final call = dataSource.getPokemon(params: tPokemonParams);
           // assert
-          expect(call, throwsA(TypeMatcher<ServerException>()));
+          expect(call, throwsA(const TypeMatcher<ServerException>()));
         },
       );
     },

@@ -11,7 +11,7 @@ class AppRouter {
     switch (settings.name) {
       case home:
         return MaterialPageRoute(
-          settings: RouteSettings(name: home),
+          settings: const RouteSettings(name: home),
           builder:
               (_) => MultiBlocProvider(
                 providers: [

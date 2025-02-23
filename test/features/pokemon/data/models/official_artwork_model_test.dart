@@ -7,7 +7,7 @@ import 'package:poke_clean_arc_example/poke.dart';
 /// and verifies that it is a subclass of OfficialArtworkEntity using a test case.
 
 void main() {
-  final OfficialArtworkModel tOfficialArtworkModel = OfficialArtworkModel(
+  final OfficialArtworkModel tOfficialArtworkModel = const OfficialArtworkModel(
     frontDefault: 'frontDefault',
     frontShiny: 'frontShiny',
   );

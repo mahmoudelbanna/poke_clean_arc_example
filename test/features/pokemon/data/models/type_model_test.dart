@@ -6,7 +6,7 @@ import 'package:poke_clean_arc_example/poke.dart';
 /// This test verifies that the TypeModel instance is a subclass of TypeEntity.
 
 void main() {
-  final TypeModel tTypeModel = TypeModel(name: 'Grass');
+  final TypeModel tTypeModel = const TypeModel(name: 'Grass');
   test('should be a subclass of TypeEntity entity', () async {
     // assert
     expect(tTypeModel, isA<TypeEntity>());

@@ -16,9 +16,9 @@ class PokemonRepositoryImpl implements PokemonRepository {
 
       return Right(remotePokemon);
     } on ServerException {
-      return Left(ServerFailure(errorMessage: 'This is a server exception'));
+      return const Left(ServerFailure(errorMessage: 'This is a server exception'));
     } catch (e) {
-      return Left(ServerFailure(errorMessage: 'This is a server exception'));
+      return const Left(ServerFailure(errorMessage: 'This is a server exception'));
     }
   }
 }

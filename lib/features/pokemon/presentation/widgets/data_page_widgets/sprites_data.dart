@@ -10,7 +10,7 @@ class Sprites extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(leading: const Text('{ }'), title: const Text(kSprites)),
+        const ListTile(leading: Text('{ }'), title: Text(kSprites)),
         _Other_data(pokemon: pokemon),
       ],
     );
@@ -33,14 +33,14 @@ class _Other_data extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10.0),
       child: Column(
         children: [
-          ListTile(leading: const Text('{ }'), title: const Text(kOther)),
+          const ListTile(leading: Text('{ }'), title: Text(kOther)),
           Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Column(
               children: [
-                ListTile(
-                  leading: const Text('{ }'),
-                  title: const Text(kOfficialArtwork),
+                const ListTile(
+                  leading: Text('{ }'),
+                  title: Text(kOfficialArtwork),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0),

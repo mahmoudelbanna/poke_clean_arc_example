@@ -6,10 +6,10 @@ part 'fetch_pokemon_state.dart';
 
 class FetchPokemonCubit extends Cubit<FetchPokemonState> {
   final GetPokemon usecase;
-  FetchPokemonCubit({required this.usecase}) : super(FetchPokemonLoading());
+  FetchPokemonCubit({required this.usecase}) : super(const FetchPokemonLoading());
 
   void fetchPokemon({required PokemonParams params}) async {
-    emit(FetchPokemonLoading());
+    emit(const FetchPokemonLoading());
 
     final fetchedPokemon = await usecase(params: params);
 

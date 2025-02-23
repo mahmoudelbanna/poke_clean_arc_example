@@ -41,7 +41,7 @@ void main() {
 
   test('should return Failure when repository fails', () async {
     // arrange
-    final tFailure = ServerFailure(errorMessage: 'This is a server exception');
+    final tFailure = const ServerFailure(errorMessage: 'This is a server exception');
     when(
       mockPokemonRepository.getPokemon(params: tAdjustedParams),
     ).thenAnswer((_) async => Left(tFailure));

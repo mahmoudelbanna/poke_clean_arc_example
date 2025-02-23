@@ -35,7 +35,7 @@ class PokemonPageData extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(child: PokemonWidget(pokemon: _pokemon)),
-          SearchPokemonWidget(),
+          const SearchPokemonWidget(),
         ],
       ),
     );

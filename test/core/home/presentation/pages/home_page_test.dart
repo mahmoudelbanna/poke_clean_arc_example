@@ -15,7 +15,7 @@ void main() {
   late MockFetchPokemonCubit mockFetchPokemonCubit;
 
   setUpAll(() {
-    provideDummy<FetchPokemonState>(FetchPokemonLoading());
+    provideDummy<FetchPokemonState>(const FetchPokemonLoading());
   });
 
   setUp(() {
@@ -37,12 +37,12 @@ void main() {
 
     when(mockFetchPokemonCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
-        FetchPokemonLoading(),
+        const FetchPokemonLoading(),
         FetchPokemonLoaded(pokemon: tPokemon),
       ]),
     );
 
-    when(mockFetchPokemonCubit.state).thenReturn(FetchPokemonLoading());
+    when(mockFetchPokemonCubit.state).thenReturn(const FetchPokemonLoading());
   });
 
   Widget createWidgetUnderTest() {
@@ -66,10 +66,10 @@ void main() {
     ) async {
       when(
         mockInternetCubit.state,
-      ).thenReturn(InternetConnected(connectionType: ConnectionType.connected));
+      ).thenReturn(const InternetConnected(connectionType: ConnectionType.connected));
       when(mockInternetCubit.stream).thenAnswer(
         (_) => Stream.fromIterable([
-          InternetConnected(connectionType: ConnectionType.connected),
+          const InternetConnected(connectionType: ConnectionType.connected),
         ]),
       );
 
@@ -122,7 +122,7 @@ void main() {
 
       // Mock the cubit's state and stream
       when(mockInternetCubit.stream).thenAnswer((_) => streamController.stream);
-      when(mockInternetCubit.state).thenReturn(InternetDisconnected());
+      when(mockInternetCubit.state).thenReturn(const InternetDisconnected());
 
       // Render the widget
       await tester.pumpWidget(createWidgetUnderTest());
@@ -135,9 +135,9 @@ void main() {
       // Update the state to InternetConnected
       when(
         mockInternetCubit.state,
-      ).thenReturn(InternetConnected(connectionType: ConnectionType.connected));
+      ).thenReturn(const InternetConnected(connectionType: ConnectionType.connected));
       streamController.add(
-        InternetConnected(connectionType: ConnectionType.connected),
+        const InternetConnected(connectionType: ConnectionType.connected),
       );
 
       await tester.pumpAndSettle(); // Wait for animations and state changes
