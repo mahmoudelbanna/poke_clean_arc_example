@@ -7,22 +7,16 @@ class TemplateParams {}
 
 class PokemonParams extends Equatable {
   final String id;
-  const PokemonParams({
-    required this.id,
-  });
+  const PokemonParams({required this.id});
 
   @override
   List<Object?> get props => [id];
 
   Map<String, dynamic> toMap() {
-    return {
-      kId: id,
-    };
+    return {kId: id};
   }
 
   factory PokemonParams.fromMap(Map<String, dynamic> map) {
-    return PokemonParams(
-      id: map[kId] ?? '',
-    );
+    return PokemonParams(id: map[kId] ?? '');
   }
 }

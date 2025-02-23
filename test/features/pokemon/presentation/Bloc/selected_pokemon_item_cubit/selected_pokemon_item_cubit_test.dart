@@ -21,9 +21,7 @@ void main() {
 
   setUp(() {
     mockStorage = MockStorage();
-    when(
-      mockStorage.write(any, any),
-    ).thenAnswer((_) async => {});
+    when(mockStorage.write(any, any)).thenAnswer((_) async => {});
     HydratedBloc.storage = mockStorage;
 
     cubit = SelectedPokemonItemCubit();
@@ -56,25 +54,24 @@ void main() {
     group('hydration', () {
       test('should convert state to JSON', () {
         // arrange
-        final state = SelectedPokemonItemState(
-          params: PokemonParams(id: '3'),
-        );
+        final state = SelectedPokemonItemState(params: PokemonParams(id: '3'));
 
         // act
         final json = cubit.toJson(state);
 
         // assert
         expect(
-            json,
-            equals({
-              'params': {'id': '3'}
-            }));
+          json,
+          equals({
+            'params': {'id': '3'},
+          }),
+        );
       });
 
       test('should convert JSON to state', () {
         // arrange
         final json = {
-          'params': {'id': '3'}
+          'params': {'id': '3'},
         };
 
         // act
@@ -93,12 +90,9 @@ void main() {
 
         // assert
         verify(
-          mockStorage.write(
-            any,
-            {
-              'params': {'id': '5'}
-            },
-          ),
+          mockStorage.write(any, {
+            'params': {'id': '5'},
+          }),
         ).called(1);
       });
     });

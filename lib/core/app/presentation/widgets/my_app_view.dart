@@ -11,18 +11,17 @@ class MyAppView extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-          useMaterial3: true,
-          primarySwatch: Colors.blue,
-          appBarTheme: const AppBarTheme(
-            titleTextStyle: TextStyle(
-              color: Colors.black87,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          iconTheme: const IconThemeData(
+        useMaterial3: true,
+        primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
             color: Colors.black87,
-          )),
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        iconTheme: const IconThemeData(color: Colors.black87),
+      ),
       onGenerateRoute: AppRouter.onGenerateRoute,
     );
   }

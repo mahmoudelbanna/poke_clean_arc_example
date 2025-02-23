@@ -8,7 +8,6 @@ import '../../../../../fixtures/test_pokemon_data.dart';
 import 'fetch_pokemon_cubit_test.mocks.dart';
 
 @GenerateMocks([GetPokemon])
-
 /// Tests for [FetchPokemonCubit].
 ///
 /// This test suite verifies that the Cubit correctly emits states
@@ -38,50 +37,56 @@ void main() {
   });
 
   group('fetchPokemon', () {
-    test('should emit [FetchPokemonLoading, FetchPokemonLoaded] when success',
-        () async {
-      // arrange
-      final tPokemonParams = TestPokemonData.pokemonParams;
-      final tPokemon = TestPokemonData.pokemon;
+    test(
+      'should emit [FetchPokemonLoading, FetchPokemonLoaded] when success',
+      () async {
+        // arrange
+        final tPokemonParams = TestPokemonData.pokemonParams;
+        final tPokemon = TestPokemonData.pokemon;
 
-      when(mockGetPokemon(params: anyNamed('params')))
-          .thenAnswer((_) async => Right(tPokemon));
+        when(
+          mockGetPokemon(params: anyNamed('params')),
+        ).thenAnswer((_) async => Right(tPokemon));
 
-      // act
-      cubit.fetchPokemon(params: tPokemonParams);
+        // act
+        cubit.fetchPokemon(params: tPokemonParams);
 
-      // Assert that the initial state is correct.
-      expect(cubit.state, FetchPokemonLoading());
+        // Assert that the initial state is correct.
+        expect(cubit.state, FetchPokemonLoading());
 
-      // assert later
-      await expectLater(
-        cubit.stream,
-        emits(FetchPokemonLoaded(pokemon: tPokemon)),
-      );
-      // Assert that the current state is in sync with the stubbed stream.
-      expect(cubit.state, FetchPokemonLoaded(pokemon: tPokemon));
-    });
+        // assert later
+        await expectLater(
+          cubit.stream,
+          emits(FetchPokemonLoaded(pokemon: tPokemon)),
+        );
+        // Assert that the current state is in sync with the stubbed stream.
+        expect(cubit.state, FetchPokemonLoaded(pokemon: tPokemon));
+      },
+    );
 
-    test('should emit [FetchPokemonLoading, FetchPokemonFailure] when failure',
-        () async {
-      // arrange
-      final tPokemonParams = TestPokemonData.pokemonParams;
-      when(mockGetPokemon(params: anyNamed('params')))
-          .thenAnswer((_) async => Left(ServerFailure(errorMessage: 'error')));
+    test(
+      'should emit [FetchPokemonLoading, FetchPokemonFailure] when failure',
+      () async {
+        // arrange
+        final tPokemonParams = TestPokemonData.pokemonParams;
+        when(
+          mockGetPokemon(params: anyNamed('params')),
+        ).thenAnswer((_) async => Left(ServerFailure(errorMessage: 'error')));
 
-      // act
-      cubit.fetchPokemon(params: tPokemonParams); // emit
+        // act
+        cubit.fetchPokemon(params: tPokemonParams); // emit
 
-      // Assert that the initial state is correct.
-      expect(cubit.state, FetchPokemonLoading());
+        // Assert that the initial state is correct.
+        expect(cubit.state, FetchPokemonLoading());
 
-      // assert later
-      await expectLater(
-        cubit.stream,
-        emits(FetchPokemonFailure(message: 'error')),
-      );
-      // Assert that the current state is in sync with the stubbed stream.
-      expect(cubit.state, FetchPokemonFailure(message: 'error'));
-    });
+        // assert later
+        await expectLater(
+          cubit.stream,
+          emits(FetchPokemonFailure(message: 'error')),
+        );
+        // Assert that the current state is in sync with the stubbed stream.
+        expect(cubit.state, FetchPokemonFailure(message: 'error'));
+      },
+    );
   });
 }

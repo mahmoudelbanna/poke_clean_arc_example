@@ -31,16 +31,13 @@ void main() {
     Widget createWidgetUnderTest() {
       return BlocProvider<SelectedPokemonItemCubit>(
         create: (context) => mockSelectedPokemonItemCubit,
-        child: const MaterialApp(
-          home: Scaffold(
-            body: ShowModalPopup(),
-          ),
-        ),
+        child: const MaterialApp(home: Scaffold(body: ShowModalPopup())),
       );
     }
 
-    testWidgets('displays the correct button text',
-        (WidgetTester tester) async {
+    testWidgets('displays the correct button text', (
+      WidgetTester tester,
+    ) async {
       // Act: Build the widget tree
       await tester.pumpWidget(createWidgetUnderTest());
 
@@ -72,8 +69,9 @@ void main() {
       expect(find.text('Done'), findsOneWidget);
     });
 
-    testWidgets('calls changeParamsId when picker value changes',
-        (tester) async {
+    testWidgets('calls changeParamsId when picker value changes', (
+      tester,
+    ) async {
       // Arrange
       const newSelectedItem = 7;
       // Act
@@ -87,9 +85,9 @@ void main() {
       picker.onSelectedItemChanged?.call(newSelectedItem);
 
       // Assert
-      verify(mockSelectedPokemonItemCubit.changeParamsId(
-              newId: newSelectedItem))
-          .called(1);
+      verify(
+        mockSelectedPokemonItemCubit.changeParamsId(newId: newSelectedItem),
+      ).called(1);
     });
 
     testWidgets('closes modal when Done button is pressed', (tester) async {

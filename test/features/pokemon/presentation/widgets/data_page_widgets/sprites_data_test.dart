@@ -8,15 +8,12 @@ void main() {
   final tPokemon = TestPokemonData.pokemon;
 
   Widget createWidgetUnderTest() {
-    return MaterialApp(
-      home: Scaffold(
-        body: Sprites(pokemon: tPokemon),
-      ),
-    );
+    return MaterialApp(home: Scaffold(body: Sprites(pokemon: tPokemon)));
   }
 
-  testWidgets('Sprites widget displays correct structure',
-      (WidgetTester tester) async {
+  testWidgets('Sprites widget displays correct structure', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(createWidgetUnderTest());
 
     // Test main Sprites section
@@ -32,14 +29,19 @@ void main() {
     // Test URLs
     expect(find.text(kFrontDefault), findsOneWidget);
     expect(find.text(kFrontShiny), findsOneWidget);
-    expect(find.text(tPokemon.sprites.other.officialArtwork.frontDefault),
-        findsOneWidget);
-    expect(find.text(tPokemon.sprites.other.officialArtwork.frontShiny),
-        findsOneWidget);
+    expect(
+      find.text(tPokemon.sprites.other.officialArtwork.frontDefault),
+      findsOneWidget,
+    );
+    expect(
+      find.text(tPokemon.sprites.other.officialArtwork.frontShiny),
+      findsOneWidget,
+    );
   });
 
-  testWidgets('SelectableText widgets are present',
-      (WidgetTester tester) async {
+  testWidgets('SelectableText widgets are present', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(createWidgetUnderTest());
 
     expect(find.byType(SelectableText), findsNWidgets(2));

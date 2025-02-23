@@ -6,10 +6,7 @@ import 'package:poke_clean_arc_example/poke.dart';
 class InternetListener extends StatelessWidget {
   final Widget child;
 
-  const InternetListener({
-    super.key,
-    required this.child,
-  });
+  const InternetListener({super.key, required this.child});
 
   /// Displays an alert dialog when there is no internet connection.
   ///
@@ -33,7 +30,6 @@ class InternetListener extends StatelessWidget {
   }
 
   @override
-
   ///
   /// Listens for changes to the internet connection state and shows an
   /// alert dialog when the internet connection is disconnected.

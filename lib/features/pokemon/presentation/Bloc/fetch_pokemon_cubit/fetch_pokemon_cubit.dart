@@ -17,9 +17,7 @@ class FetchPokemonCubit extends Cubit<FetchPokemonState> {
       (failure) => emit(
         FetchPokemonFailure(message: FailureToMessage.call(failure: failure)),
       ),
-      (pokemon) => emit(
-        FetchPokemonLoaded(pokemon: pokemon),
-      ),
+      (pokemon) => emit(FetchPokemonLoaded(pokemon: pokemon)),
     );
   }
 }

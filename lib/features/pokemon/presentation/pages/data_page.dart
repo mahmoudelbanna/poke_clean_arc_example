@@ -10,9 +10,7 @@ class DataPage extends StatelessWidget {
     return BlocBuilder<FetchPokemonCubit, FetchPokemonState>(
       builder: (context, state) {
         if (state is FetchPokemonLoaded) {
-          return DataWidget(
-            pokemon: state.pokemon,
-          );
+          return DataWidget(pokemon: state.pokemon);
         }
         if (state is FetchPokemonFailure) {
           return ErrorMessageWidget(message: state.message);

@@ -15,19 +15,14 @@ class DataWidget extends StatelessWidget {
             title: Text('$kGetPokemonUrl${pokemon.id}'),
             tileColor: Colors.orange,
           ),
-          ListTile(
-            title: const Text(kName),
-            subtitle: Text(pokemon.name),
-          ),
+          ListTile(title: const Text(kName), subtitle: Text(pokemon.name)),
           const Divider(),
           ListTile(
             title: const Text(kId),
             subtitle: Text(pokemon.id.toString()),
           ),
           const Divider(),
-          Sprites(
-            pokemon: pokemon,
-          ),
+          Sprites(pokemon: pokemon),
           const Divider(),
           Types(pokemon: pokemon),
         ],

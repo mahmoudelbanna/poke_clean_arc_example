@@ -24,16 +24,13 @@ void main() {
     );
   }
 
-  testWidgets('displays "No internet connection" when InternetDisconnected',
-      (WidgetTester tester) async {
-    when(mockInternetCubit.state).thenReturn(
-      const InternetDisconnected(),
-    );
-    when(mockInternetCubit.stream).thenAnswer(
-      (_) => Stream.fromIterable([
-        const InternetDisconnected(),
-      ]),
-    );
+  testWidgets('displays "No internet connection" when InternetDisconnected', (
+    WidgetTester tester,
+  ) async {
+    when(mockInternetCubit.state).thenReturn(const InternetDisconnected());
+    when(
+      mockInternetCubit.stream,
+    ).thenAnswer((_) => Stream.fromIterable([const InternetDisconnected()]));
 
     await tester.pumpWidget(createWidgetUnderTest());
     await tester.pump(); // Allow widget to build
@@ -44,8 +41,9 @@ void main() {
     expect(find.text("You're online!"), findsNothing);
   });
 
-  testWidgets('displays "You\'re online!" when InternetConnected',
-      (WidgetTester tester) async {
+  testWidgets('displays "You\'re online!" when InternetConnected', (
+    WidgetTester tester,
+  ) async {
     when(mockInternetCubit.state).thenReturn(
       const InternetConnected(connectionType: ConnectionType.connected),
     );
@@ -64,16 +62,13 @@ void main() {
     expect(find.text("No internet connection"), findsNothing);
   });
 
-  testWidgets('animates the icon with ScaleTransition',
-      (WidgetTester tester) async {
-    when(mockInternetCubit.state).thenReturn(
-      const InternetDisconnected(),
-    );
-    when(mockInternetCubit.stream).thenAnswer(
-      (_) => Stream.fromIterable([
-        const InternetDisconnected(),
-      ]),
-    );
+  testWidgets('animates the icon with ScaleTransition', (
+    WidgetTester tester,
+  ) async {
+    when(mockInternetCubit.state).thenReturn(const InternetDisconnected());
+    when(
+      mockInternetCubit.stream,
+    ).thenAnswer((_) => Stream.fromIterable([const InternetDisconnected()]));
 
     await tester.pumpWidget(createWidgetUnderTest());
     await tester.pump(); // Allow widget to build

@@ -23,21 +23,16 @@ void main() {
   Widget createWidgetUnderTest() {
     return BlocProvider<FetchPokemonCubit>(
       create: (_) => mockFetchPokemonCubit,
-      child: const MaterialApp(
-        home: Scaffold(
-          body: DataPage(),
-        ),
-      ),
+      child: const MaterialApp(home: Scaffold(body: DataPage())),
     );
   }
 
-  testWidgets('displays LoadingIndicator when state is initial',
-      (tester) async {
-    when(mockFetchPokemonCubit.stream).thenAnswer(
-      (_) => Stream.fromIterable([
-        FetchPokemonLoading(),
-      ]),
-    );
+  testWidgets('displays LoadingIndicator when state is initial', (
+    tester,
+  ) async {
+    when(
+      mockFetchPokemonCubit.stream,
+    ).thenAnswer((_) => Stream.fromIterable([FetchPokemonLoading()]));
     when(mockFetchPokemonCubit.state).thenReturn(FetchPokemonLoading());
 
     await tester.pumpWidget(createWidgetUnderTest());
@@ -45,8 +40,9 @@ void main() {
     expect(find.byType(LoadingIndicator), findsOneWidget);
   });
 
-  testWidgets('displays DataWidget when state is FetchPokemonLoaded',
-      (tester) async {
+  testWidgets('displays DataWidget when state is FetchPokemonLoaded', (
+    tester,
+  ) async {
     final tPokemon = TestPokemonData.pokemon;
 
     when(mockFetchPokemonCubit.stream).thenAnswer(
@@ -55,17 +51,18 @@ void main() {
         FetchPokemonLoaded(pokemon: tPokemon),
       ]),
     );
-    when(mockFetchPokemonCubit.state).thenReturn(
-      FetchPokemonLoaded(pokemon: tPokemon),
-    );
+    when(
+      mockFetchPokemonCubit.state,
+    ).thenReturn(FetchPokemonLoaded(pokemon: tPokemon));
 
     await tester.pumpWidget(createWidgetUnderTest());
 
     expect(find.byType(DataWidget), findsOneWidget);
   });
 
-  testWidgets('displays ErrorMessageWidget when state is FetchPokemonFailure',
-      (tester) async {
+  testWidgets('displays ErrorMessageWidget when state is FetchPokemonFailure', (
+    tester,
+  ) async {
     const errorMessage = 'Failed to fetch data';
     when(mockFetchPokemonCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
@@ -73,8 +70,9 @@ void main() {
         FetchPokemonFailure(message: errorMessage),
       ]),
     );
-    when(mockFetchPokemonCubit.state)
-        .thenReturn(FetchPokemonFailure(message: errorMessage));
+    when(
+      mockFetchPokemonCubit.state,
+    ).thenReturn(FetchPokemonFailure(message: errorMessage));
 
     await tester.pumpWidget(createWidgetUnderTest());
 

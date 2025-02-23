@@ -57,7 +57,9 @@ void main() {
       }
     });
 
-    testWidgets('Navigates between pages using NavBar', (WidgetTester tester) async {
+    testWidgets('Navigates between pages using NavBar', (
+      WidgetTester tester,
+    ) async {
       await tester.runAsync(() async {
         app.main();
       });
@@ -80,7 +82,7 @@ void main() {
 
       // Test navigation back to PokemonPage
       final navBarItemPokemonPage = find.byIcon(Icons.search_outlined);
-      expect(navBarItemPokemonPage, findsOneWidget); 
+      expect(navBarItemPokemonPage, findsOneWidget);
       await tester.tap(navBarItemPokemonPage);
       await tester.pumpAndSettle();
 

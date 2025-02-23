@@ -6,18 +6,15 @@ import '../../../../../fixtures/test_pokemon_data.dart';
 
 void main() {
   group('PokemonTypes Widget', () {
-    testWidgets('displays the correct Pokemon types',
-        (WidgetTester tester) async {
+    testWidgets('displays the correct Pokemon types', (
+      WidgetTester tester,
+    ) async {
       final tPokemon = TestPokemonData.pokemon;
       final pokemonTypes = tPokemon.types;
 
       Widget createWidgetUnderTest() {
         return MaterialApp(
-          home: Scaffold(
-            body: PokemonTypes(
-              pokemonTypes: pokemonTypes,
-            ),
-          ),
+          home: Scaffold(body: PokemonTypes(pokemonTypes: pokemonTypes)),
         );
       }
 
@@ -25,33 +22,36 @@ void main() {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Assert: Verify the types are displayed as Chips
-      expect(find.text(pokemonTypes.first.type.name.toUpperCase()),
-          findsOneWidget);
       expect(
-          find.text(pokemonTypes.last.type.name.toUpperCase()), findsOneWidget);
+        find.text(pokemonTypes.first.type.name.toUpperCase()),
+        findsOneWidget,
+      );
+      expect(
+        find.text(pokemonTypes.last.type.name.toUpperCase()),
+        findsOneWidget,
+      );
 
       // Assert: Verify the Chips are displayed with correct styling
-      final fireChip = tester.widget<Chip>(find.widgetWithText(
-          Chip, pokemonTypes.first.type.name.toUpperCase()));
+      final fireChip = tester.widget<Chip>(
+        find.widgetWithText(Chip, pokemonTypes.first.type.name.toUpperCase()),
+      );
       expect(fireChip.backgroundColor, Colors.white);
 
       final flyingChip = tester.widget<Chip>(
-          find.widgetWithText(Chip, pokemonTypes.last.type.name.toUpperCase()));
+        find.widgetWithText(Chip, pokemonTypes.last.type.name.toUpperCase()),
+      );
       expect(flyingChip.backgroundColor, Colors.white);
     });
 
-    testWidgets('handles empty Pokemon types list',
-        (WidgetTester tester) async {
+    testWidgets('handles empty Pokemon types list', (
+      WidgetTester tester,
+    ) async {
       // Arrange: Provide an empty list
       const emptyPokemonTypes = <TypesEntity>[];
 
       Widget createWidgetUnderTest() {
         return MaterialApp(
-          home: Scaffold(
-            body: PokemonTypes(
-              pokemonTypes: emptyPokemonTypes,
-            ),
-          ),
+          home: Scaffold(body: PokemonTypes(pokemonTypes: emptyPokemonTypes)),
         );
       }
 

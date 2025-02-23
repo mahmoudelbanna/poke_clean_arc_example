@@ -6,11 +6,8 @@ class TypesModel extends TypesEntity {
   static List<TypesModel> fromJsonList(List<dynamic> jsonList) =>
       jsonList.map((json) => TypesModel.fromJson(json)).toList();
 
-  factory TypesModel.fromJson(Map<String, dynamic> json) => TypesModel(
-        type: TypeModel.fromJson(json[kType]),
-      );
+  factory TypesModel.fromJson(Map<String, dynamic> json) =>
+      TypesModel(type: TypeModel.fromJson(json[kType]));
 
-  Map<String, dynamic> toJson() => {
-        kType: type,
-      };
+  Map<String, dynamic> toJson() => {kType: type};
 }

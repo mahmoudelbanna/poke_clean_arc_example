@@ -10,19 +10,12 @@ final getIt = GetIt.instance;
 void init() {
   //!core
   //! Dio client
-  getIt.registerLazySingleton<Dio>(
-    () => Dio(),
-  );
+  getIt.registerLazySingleton<Dio>(() => Dio());
   //!InternetCubit
   getIt.registerFactory<InternetCubit>(
-    () => InternetCubit(
-      connectivity: getIt(),
-      connectionChecker: getIt(),
-    ),
+    () => InternetCubit(connectivity: getIt(), connectionChecker: getIt()),
   );
-  getIt.registerLazySingleton<Connectivity>(
-    () => Connectivity(),
-  );
+  getIt.registerLazySingleton<Connectivity>(() => Connectivity());
   getIt.registerLazySingleton<InternetConnectionChecker>(
     () => InternetConnectionChecker.instance,
   );
@@ -32,27 +25,19 @@ void init() {
   // fetch_pokemon_cubit
   // cubit
   getIt.registerFactory<FetchPokemonCubit>(
-    () => FetchPokemonCubit(
-      usecase: getIt(),
-    ),
+    () => FetchPokemonCubit(usecase: getIt()),
   );
   // usecase
   getIt.registerLazySingleton<GetPokemon>(
-    () => GetPokemon(
-      repository: getIt(),
-    ),
+    () => GetPokemon(repository: getIt()),
   );
   // repository
   getIt.registerLazySingleton<PokemonRepository>(
-    () => PokemonRepositoryImpl(
-      remoteDataSource: getIt(),
-    ),
+    () => PokemonRepositoryImpl(remoteDataSource: getIt()),
   );
   // datasource
   getIt.registerLazySingleton<PokemonRemoteDataSource>(
-    () => PokemonRemoteDataSourceImpl(
-      dio: getIt(),
-    ),
+    () => PokemonRemoteDataSourceImpl(dio: getIt()),
   );
   //selected_pokemon_item_cubit
   getIt.registerFactory<SelectedPokemonItemCubit>(

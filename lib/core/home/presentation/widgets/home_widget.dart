@@ -13,10 +13,7 @@ class HomeWidget extends StatefulWidget {
 class _HomeWidgetState extends State<HomeWidget> {
   late ValueNotifier<int> _currentPageIndex;
 
-  final List<Widget> _pages = [
-    const PokemonPage(),
-    const DataPage(),
-  ];
+  final List<Widget> _pages = [const PokemonPage(), const DataPage()];
 
   @override
   void initState() {
@@ -30,14 +27,15 @@ class _HomeWidgetState extends State<HomeWidget> {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: _currentPageIndex,
-      builder: (context, value, _) => Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Poke Clean Arc Example'),
-        ),
-        body: _pages[_currentPageIndex.value],
-        bottomNavigationBar: NavBar(currentPageIndex: _currentPageIndex),
-      ),
+      builder:
+          (context, value, _) => Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: const Text('Poke Clean Arc Example'),
+            ),
+            body: _pages[_currentPageIndex.value],
+            bottomNavigationBar: NavBar(currentPageIndex: _currentPageIndex),
+          ),
     );
   }
 }

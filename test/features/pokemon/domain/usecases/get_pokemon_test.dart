@@ -19,58 +19,53 @@ void main() {
 
   final tPokemonParams = TestPokemonData.pokemonParams;
   final adjustedId = (int.parse(tPokemonParams.id) + 1).toString();
-  final tAdjustedParams =
-      PokemonParams(id: adjustedId); // Because usecase adds 1 to the ID
+  final tAdjustedParams = PokemonParams(
+    id: adjustedId,
+  ); // Because usecase adds 1 to the ID
   final tPokemonEntity = TestPokemonData.pokemon;
 
-  test(
-    'should get pokemon entity from the repository',
-    () async {
-      // arrange
-      when(mockPokemonRepository.getPokemon(params: tAdjustedParams))
-          .thenAnswer((_) async => Right(tPokemonEntity));
+  test('should get pokemon entity from the repository', () async {
+    // arrange
+    when(
+      mockPokemonRepository.getPokemon(params: tAdjustedParams),
+    ).thenAnswer((_) async => Right(tPokemonEntity));
 
-      // act
-      final result = await usecase(params: tPokemonParams);
+    // act
+    final result = await usecase(params: tPokemonParams);
 
-      // assert
-      expect(result, Right(tPokemonEntity));
-      verify(mockPokemonRepository.getPokemon(params: tAdjustedParams));
-      verifyNoMoreInteractions(mockPokemonRepository);
-    },
-  );
+    // assert
+    expect(result, Right(tPokemonEntity));
+    verify(mockPokemonRepository.getPokemon(params: tAdjustedParams));
+    verifyNoMoreInteractions(mockPokemonRepository);
+  });
 
-  test(
-    'should return Failure when repository fails',
-    () async {
-      // arrange
-      final tFailure = ServerFailure(errorMessage: 'This is a server exception');
-      when(mockPokemonRepository.getPokemon(params: tAdjustedParams))
-          .thenAnswer((_) async => Left(tFailure));
+  test('should return Failure when repository fails', () async {
+    // arrange
+    final tFailure = ServerFailure(errorMessage: 'This is a server exception');
+    when(
+      mockPokemonRepository.getPokemon(params: tAdjustedParams),
+    ).thenAnswer((_) async => Left(tFailure));
 
-      // act
-      final result = await usecase(params: tPokemonParams);
+    // act
+    final result = await usecase(params: tPokemonParams);
 
-      // assert
-      expect(result, Left(tFailure));
-      verify(mockPokemonRepository.getPokemon(params: tAdjustedParams));
-      verifyNoMoreInteractions(mockPokemonRepository);
-    },
-  );
+    // assert
+    expect(result, Left(tFailure));
+    verify(mockPokemonRepository.getPokemon(params: tAdjustedParams));
+    verifyNoMoreInteractions(mockPokemonRepository);
+  });
 
-  test(
-    'should adjust the ID by adding 1 before calling repository',
-    () async {
-      // arrange
-      when(mockPokemonRepository.getPokemon(params: tAdjustedParams))
-          .thenAnswer((_) async => Right(tPokemonEntity));
+  test('should adjust the ID by adding 1 before calling repository', () async {
+    // arrange
+    when(
+      mockPokemonRepository.getPokemon(params: tAdjustedParams),
+    ).thenAnswer((_) async => Right(tPokemonEntity));
 
-      // act
-      await usecase(params: tPokemonParams);
+    // act
+    await usecase(params: tPokemonParams);
 
-      // assert
-      verify(mockPokemonRepository.getPokemon(params: tAdjustedParams));
-      verifyNoMoreInteractions(mockPokemonRepository);
-    },
-  );
+    // assert
+    verify(mockPokemonRepository.getPokemon(params: tAdjustedParams));
+    verifyNoMoreInteractions(mockPokemonRepository);
+  });
 }

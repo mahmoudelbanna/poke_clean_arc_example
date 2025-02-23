@@ -19,19 +19,14 @@ class CustomElevatedButtonWidget extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            backgroundColor: buttonColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-            minimumSize: const Size(double.infinity, 70)),
-        onPressed: callback,
-        child: Text(
-          'Search',
-          style: TextStyle(
-            fontSize: 25,
-            color: textColor,
+          backgroundColor: buttonColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
           ),
+          minimumSize: const Size(double.infinity, 70),
         ),
+        onPressed: callback,
+        child: Text('Search', style: TextStyle(fontSize: 25, color: textColor)),
       ),
     );
   }

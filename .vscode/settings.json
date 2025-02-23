@@ -4,9 +4,12 @@
         "gradlew",
         "hprof",
         "podspec",
+        "simctl",
+        "subosito",
         "subprojects",
         "xcconfig",
         "xcframework",
+        "xcrun",
         "xcworkspace"
     ]
 }

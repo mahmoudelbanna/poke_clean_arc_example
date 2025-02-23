@@ -10,14 +10,13 @@ void main() {
 
     Widget createWidgetUnderTest() {
       return MaterialApp(
-        home: Scaffold(
-          body: PokemonWidget(pokemon: tPokemon),
-        ),
+        home: Scaffold(body: PokemonWidget(pokemon: tPokemon)),
       );
     }
 
-    testWidgets('displays the correct Pokemon details',
-        (WidgetTester tester) async {
+    testWidgets('displays the correct Pokemon details', (
+      WidgetTester tester,
+    ) async {
       // Mock PokemonEntity
 
       // Build the widget tree

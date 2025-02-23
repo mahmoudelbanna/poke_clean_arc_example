@@ -12,17 +12,16 @@ class AppRouter {
       case home:
         return MaterialPageRoute(
           settings: RouteSettings(name: home),
-          builder: (_) => MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (_) => getIt<FetchPokemonCubit>(),
+          builder:
+              (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider(create: (_) => getIt<FetchPokemonCubit>()),
+                  BlocProvider(
+                    create: (context) => getIt<SelectedPokemonItemCubit>(),
+                  ),
+                ],
+                child: const MyHomePage(),
               ),
-              BlocProvider(
-                create: (context) => getIt<SelectedPokemonItemCubit>(),
-              ),
-            ],
-            child: const MyHomePage(),
-          ),
         );
 
       default:

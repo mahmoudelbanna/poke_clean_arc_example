@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poke_clean_arc_example/poke.dart';
 
 class Types extends StatelessWidget {
-  const Types({
-    super.key,
-    required this.pokemon,
-  });
+  const Types({super.key, required this.pokemon});
 
   final PokemonEntity pokemon;
 
@@ -13,10 +10,7 @@ class Types extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          leading: const Text('[ ]'),
-          title: const Text(kTypes),
-        ),
+        ListTile(leading: const Text('[ ]'), title: const Text(kTypes)),
         _Type(pokemon: pokemon),
       ],
     );
@@ -25,7 +19,7 @@ class Types extends StatelessWidget {
 
 class _Type extends StatelessWidget {
   const _Type({
-    // ignore: unused_element
+    // ignore: unused_element, unused_element_parameter
     super.key,
     required this.pokemon,
   });
@@ -41,10 +35,7 @@ class _Type extends StatelessWidget {
           pokemon.types.length,
           (index) => Column(
             children: [
-              ListTile(
-                leading: const Text('{ }'),
-                title: const Text(kType),
-              ),
+              ListTile(leading: const Text('{ }'), title: const Text(kType)),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: ListTile(

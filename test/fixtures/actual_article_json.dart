@@ -5,13 +5,13 @@ Map<String, dynamic> actualArticlesJsonToMap = {
     "other": {
       "official-artwork": {
         "front_default": "frontDefault",
-        "front_shiny": "frontShiny"
-      }
-    }
+        "front_shiny": "frontShiny",
+      },
+    },
   },
   "types": [
     {
-      "type": {"name": "Grass"}
-    }
-  ]
+      "type": {"name": "Grass"},
+    },
+  ],
 };

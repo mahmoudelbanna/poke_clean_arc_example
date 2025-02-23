@@ -22,10 +22,7 @@ class PokemonName extends StatelessWidget {
               color: Colors.white,
               fontWeight: FontWeight.w900,
               shadows: <Shadow>[
-                Shadow(
-                  blurRadius: 20.0,
-                  color: Colors.black45,
-                ),
+                Shadow(blurRadius: 20.0, color: Colors.black45),
               ],
               fontSize: 50,
             ),

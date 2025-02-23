@@ -24,7 +24,5 @@ void main() async {
   );
   di.init();
   Bloc.observer = const AppBlocObserver();
-  runApp(
-    const MyApp(),
-  );
+  runApp(const MyApp());
 }

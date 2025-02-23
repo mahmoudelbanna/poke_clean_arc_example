@@ -8,11 +8,7 @@ void main() {
   final tPokemon = TestPokemonData.pokemon;
 
   Widget createWidgetUnderTest() {
-    return MaterialApp(
-      home: Scaffold(
-        body: Types(pokemon: tPokemon),
-      ),
-    );
+    return MaterialApp(home: Scaffold(body: Types(pokemon: tPokemon)));
   }
 
   testWidgets('Types widget displays correctly', (WidgetTester tester) async {
@@ -34,7 +30,9 @@ void main() {
           widget is Padding &&
           widget.padding == const EdgeInsets.only(left: 10.0),
     );
-    expect(customPaddings,
-        findsNWidgets(2)); // One for _Type and one for each type's name
+    expect(
+      customPaddings,
+      findsNWidgets(2),
+    ); // One for _Type and one for each type's name
   });
 }

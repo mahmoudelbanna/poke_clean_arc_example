@@ -16,10 +16,7 @@ class OfficialArtworkEntity extends Equatable {
   String toString() =>
       'OfficialArtworkEntity(frontDefault: $frontDefault, frontShiny: $frontShiny)';
 
-  OfficialArtworkEntity copyWith({
-    String? frontDefault,
-    String? frontShiny,
-  }) {
+  OfficialArtworkEntity copyWith({String? frontDefault, String? frontShiny}) {
     return OfficialArtworkEntity(
       frontDefault: frontDefault ?? this.frontDefault,
       frontShiny: frontShiny ?? this.frontShiny,
@@ -27,9 +24,6 @@ class OfficialArtworkEntity extends Equatable {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      kFrontDefault: frontDefault,
-      kFrontShiny: frontShiny,
-    };
+    return {kFrontDefault: frontDefault, kFrontShiny: frontShiny};
   }
 }

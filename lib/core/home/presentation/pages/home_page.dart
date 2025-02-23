@@ -10,7 +10,7 @@ class MyHomePage extends StatelessWidget {
     return BlocBuilder<InternetCubit, InternetState>(
       builder: (context, state) {
         if (state is InternetLoading) {
-          return const CircularProgressIndicator.adaptive();
+          return LoadingInternet();
         } else if (state is InternetConnected) {
           return const HomeWidget();
         } else {
@@ -18,5 +18,14 @@ class MyHomePage extends StatelessWidget {
         }
       },
     );
+  }
+}
+
+class LoadingInternet extends StatelessWidget {
+  const LoadingInternet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const CircularProgressIndicator.adaptive();
   }
 }

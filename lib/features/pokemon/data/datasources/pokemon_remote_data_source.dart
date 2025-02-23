@@ -15,9 +15,7 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
   @override
   Future<PokemonModel> getPokemon({required PokemonParams params}) async {
     try {
-      final response = await dio.get(
-        '$kGetPokemonUrl/${params.id}',
-      );
+      final response = await dio.get('$kGetPokemonUrl/${params.id}');
 
       if (response.statusCode == 200) {
         return PokemonModel.fromJson(response.data);

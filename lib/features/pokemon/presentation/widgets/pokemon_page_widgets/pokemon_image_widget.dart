@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PokemonContainerWidget extends StatelessWidget {
-  const PokemonContainerWidget({
-    super.key,
-    required this.child,
-  });
+  const PokemonContainerWidget({super.key, required this.child});
   final Widget child;
 
   @override

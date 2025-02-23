@@ -30,33 +30,30 @@ class ShowAlertDialog {
       barrierDismissible: false,
       useRootNavigator: false,
       context: context,
-      builder: (ctx) => AlertDialog.adaptive(
-        title: title != null
-            ? Text(
-                title,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
-              )
-            : null,
-        content: content != null
-            ? Text(
-                content,
-                style: Theme.of(context).textTheme.titleMedium,
-              )
-            : null,
-        actions: [
-          TextButton(
-            onPressed: onPressesAction_1,
-            child: Text(action),
+      builder:
+          (ctx) => AlertDialog.adaptive(
+            title:
+                title != null
+                    ? Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                    : null,
+            content:
+                content != null
+                    ? Text(
+                      content,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    )
+                    : null,
+            actions: [
+              TextButton(onPressed: onPressesAction_1, child: Text(action)),
+              if (action_2 != null)
+                TextButton(onPressed: onPressesAction_2, child: Text(action_2)),
+            ],
           ),
-          if (action_2 != null)
-            TextButton(
-              onPressed: onPressesAction_2,
-              child: Text(action_2),
-            )
-        ],
-      ),
     );
   }
 }

@@ -11,26 +11,27 @@ void main() {
     Widget createWidgetUnderTest() {
       return MaterialApp(
         home: Scaffold(
-          body: PokemonName(
-            pokemonId: tPokemon.id,
-            pokemonName: tPokemon.name,
-          ),
+          body: PokemonName(pokemonId: tPokemon.id, pokemonName: tPokemon.name),
         ),
       );
     }
 
-    testWidgets('displays the correct Pokemon ID and name',
-        (WidgetTester tester) async {
+    testWidgets('displays the correct Pokemon ID and name', (
+      WidgetTester tester,
+    ) async {
       // Act: Build the widget tree
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Assert: Verify the correct text is displayed
-      expect(find.text('#${tPokemon.id} ${tPokemon.name.toUpperCase()}'),
-          findsOneWidget);
+      expect(
+        find.text('#${tPokemon.id} ${tPokemon.name.toUpperCase()}'),
+        findsOneWidget,
+      );
 
       // Assert: Verify the text styling
       final textWidget = tester.widget<Text>(
-          find.text('#${tPokemon.id} ${tPokemon.name.toUpperCase()}'));
+        find.text('#${tPokemon.id} ${tPokemon.name.toUpperCase()}'),
+      );
       expect(textWidget.style?.fontWeight, FontWeight.w900);
       expect(textWidget.style?.fontSize, 50);
       expect(textWidget.style?.color, Colors.white);

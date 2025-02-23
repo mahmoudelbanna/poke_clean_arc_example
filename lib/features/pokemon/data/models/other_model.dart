@@ -4,9 +4,8 @@ class OtherModel extends OtherEntity {
   const OtherModel({required super.officialArtwork});
 
   factory OtherModel.fromJson(Map<String, dynamic> json) => OtherModel(
-      officialArtwork: OfficialArtworkModel.fromJson(json[kOfficialArtwork]));
+    officialArtwork: OfficialArtworkModel.fromJson(json[kOfficialArtwork]),
+  );
 
-  Map<String, dynamic> toJson() => {
-        kOfficialArtwork: officialArtwork,
-      };
+  Map<String, dynamic> toJson() => {kOfficialArtwork: officialArtwork};
 }

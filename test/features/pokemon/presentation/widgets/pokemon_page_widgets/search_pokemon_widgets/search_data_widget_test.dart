@@ -28,16 +28,13 @@ void main() {
     Widget createWidgetUnderTest() {
       return BlocProvider<SelectedPokemonItemCubit>(
         create: (context) => mockSelectedPokemonItemCubit,
-        child: const MaterialApp(
-          home: Scaffold(
-            body: SearchData(),
-          ),
-        ),
+        child: const MaterialApp(home: Scaffold(body: SearchData())),
       );
     }
 
-    testWidgets('displays the Random button and ShowModalPopup widget',
-        (WidgetTester tester) async {
+    testWidgets('displays the Random button and ShowModalPopup widget', (
+      WidgetTester tester,
+    ) async {
       // Act: Build the widget tree
       await tester.pumpWidget(createWidgetUnderTest());
 
@@ -49,8 +46,9 @@ void main() {
       expect(find.byType(ShowModalPopup), findsOneWidget);
     });
 
-    testWidgets('calls changeParamsId when Random button is pressed',
-        (WidgetTester tester) async {
+    testWidgets('calls changeParamsId when Random button is pressed', (
+      WidgetTester tester,
+    ) async {
       // Act: Build the widget tree
       await tester.pumpWidget(createWidgetUnderTest());
 
@@ -59,9 +57,9 @@ void main() {
       await tester.pumpAndSettle();
 
       //Assert: Verify that changeParamsId was called with a valid ID
-      verify(mockSelectedPokemonItemCubit.changeParamsId(
-              newId: anyNamed('newId')))
-          .called(1);
+      verify(
+        mockSelectedPokemonItemCubit.changeParamsId(newId: anyNamed('newId')),
+      ).called(1);
     });
   });
 }

@@ -13,7 +13,7 @@ class OfficialArtworkModel extends OfficialArtworkEntity {
       );
 
   Map<String, dynamic> toJson() => {
-        kFrontDefault: frontDefault,
-        kFrontShiny: frontShiny,
-      };
+    kFrontDefault: frontDefault,
+    kFrontShiny: frontShiny,
+  };
 }

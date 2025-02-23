@@ -12,10 +12,8 @@ class InternetCubit extends Cubit<InternetState> {
   late StreamSubscription connectivityStreamSubscription;
   late StreamSubscription internetCheckerSubscription;
 
-  InternetCubit({
-    required this.connectivity,
-    required this.connectionChecker,
-  }) : super(InternetLoading()) {
+  InternetCubit({required this.connectivity, required this.connectionChecker})
+    : super(InternetLoading()) {
     _initializeConnectivityChecking();
     _initializeInternetChecking();
   }
@@ -27,8 +25,9 @@ class InternetCubit extends Cubit<InternetState> {
   /// using the `connectivityResultAction`.
 
   void _initializeConnectivityChecking() {
-    connectivityStreamSubscription =
-        connectivity.onConnectivityChanged.listen(connectivityResultAction);
+    connectivityStreamSubscription = connectivity.onConnectivityChanged.listen(
+      connectivityResultAction,
+    );
   }
 
   /// Initializes the internet checking process.
@@ -37,8 +36,9 @@ class InternetCubit extends Cubit<InternetState> {
   /// change using the `emitInternetConnected` or `emitInternetDisconnected`
   /// functions.
   void _initializeInternetChecking() {
-    internetCheckerSubscription =
-        connectionChecker.onStatusChange.listen((status) {
+    internetCheckerSubscription = connectionChecker.onStatusChange.listen((
+      status,
+    ) {
       if (status == InternetConnectionStatus.connected) {
         emitInternetConnected();
       } else {
@@ -59,7 +59,7 @@ class InternetCubit extends Cubit<InternetState> {
   void connectivityResultAction(List<ConnectivityResult> connectivityResult) {
     final bool hasConnection =
         connectivityResult.contains(ConnectivityResult.wifi) ||
-            connectivityResult.contains(ConnectivityResult.mobile);
+        connectivityResult.contains(ConnectivityResult.mobile);
 
     if (hasConnection) {
       // Only check actual internet connectivity if we have network connection

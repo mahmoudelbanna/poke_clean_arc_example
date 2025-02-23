@@ -11,7 +11,6 @@ import '../../../../fixtures/test_pokemon_data.dart';
 import 'home_widget_test.mocks.dart';
 
 @GenerateMocks([SelectedPokemonItemCubit, FetchPokemonCubit, InternetCubit])
-
 /// The main function that runs the test suite for the home page.
 ///
 /// This function sets up MockCubits for [InternetCubit], [SelectedPokemonItemCubit],
@@ -37,9 +36,9 @@ void main() {
     mockSelectedPokemonItemCubit = MockSelectedPokemonItemCubit();
     mockFetchPokemonCubit = MockFetchPokemonCubit();
 
-    when(mockInternetCubit.state).thenReturn(
-      InternetConnected(connectionType: ConnectionType.connected),
-    );
+    when(
+      mockInternetCubit.state,
+    ).thenReturn(InternetConnected(connectionType: ConnectionType.connected));
     when(mockInternetCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
         InternetConnected(connectionType: ConnectionType.connected),
@@ -70,24 +69,19 @@ void main() {
   Widget createWidgetUnderTest() {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<InternetCubit>(
-          create: (_) => mockInternetCubit,
-        ),
+        BlocProvider<InternetCubit>(create: (_) => mockInternetCubit),
         BlocProvider<SelectedPokemonItemCubit>(
           create: (_) => mockSelectedPokemonItemCubit,
         ),
-        BlocProvider<FetchPokemonCubit>(
-          create: (_) => mockFetchPokemonCubit,
-        ),
+        BlocProvider<FetchPokemonCubit>(create: (_) => mockFetchPokemonCubit),
       ],
-      child: const MaterialApp(
-        home: HomeWidget(),
-      ),
+      child: const MaterialApp(home: HomeWidget()),
     );
   }
 
-  testWidgets('Displays AppBar title and default page content',
-      (WidgetTester tester) async {
+  testWidgets('Displays AppBar title and default page content', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(createWidgetUnderTest());
     await tester.pumpAndSettle(); // Wait for streams and state changes.
 
@@ -98,8 +92,9 @@ void main() {
     expect(find.byType(PokemonPage), findsOneWidget);
   });
 
-  testWidgets('Navigates between pages using NavBar',
-      (WidgetTester tester) async {
+  testWidgets('Navigates between pages using NavBar', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(createWidgetUnderTest());
     await tester.pumpAndSettle(); // Wait for streams and state changes.
 

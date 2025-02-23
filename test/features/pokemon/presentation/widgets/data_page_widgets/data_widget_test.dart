@@ -8,15 +8,12 @@ void main() {
   final tPokemon = TestPokemonData.pokemon;
 
   Widget createWidgetUnderTest() {
-    return MaterialApp(
-      home: Scaffold(
-        body: DataWidget(pokemon: tPokemon),
-      ),
-    );
+    return MaterialApp(home: Scaffold(body: DataWidget(pokemon: tPokemon)));
   }
 
-  testWidgets('should display correct Pokemon API URL',
-      (WidgetTester tester) async {
+  testWidgets('should display correct Pokemon API URL', (
+    WidgetTester tester,
+  ) async {
     final urlText = '$kGetPokemonUrl${tPokemon.id}';
 
     await tester.pumpWidget(createWidgetUnderTest());
@@ -24,15 +21,17 @@ void main() {
     expect(find.text(urlText), findsOneWidget);
   });
 
-  testWidgets('should display Pokemon name correctly',
-      (WidgetTester tester) async {
+  testWidgets('should display Pokemon name correctly', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(createWidgetUnderTest());
 
     expect(find.text(tPokemon.name), findsOneWidget);
   });
 
-  testWidgets('should display Pokemon ID correctly',
-      (WidgetTester tester) async {
+  testWidgets('should display Pokemon ID correctly', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(createWidgetUnderTest());
 
     expect(find.text(tPokemon.id.toString()), findsOneWidget);

@@ -27,54 +27,47 @@ void main() {
     Widget createWidgetUnderTest() {
       return BlocProvider<SelectedPokemonItemCubit>(
         create: (_) => mockSelectedPokemonItemCubit,
-        child: const MaterialApp(
-          home: Scaffold(
-            body: SearchPokemonWidget(),
-          ),
-        ),
+        child: const MaterialApp(home: Scaffold(body: SearchPokemonWidget())),
       );
     }
 
     testWidgets(
-        'renders correctly with proper padding and contains all child widgets',
-        (WidgetTester tester) async {
-      // Act
-      await tester.pumpWidget(createWidgetUnderTest());
+      'renders correctly with proper padding and contains all child widgets',
+      (WidgetTester tester) async {
+        // Act
+        await tester.pumpWidget(createWidgetUnderTest());
 
-      // Assert
-      // Assert
-      // Verify child widgets exist
-      expect(find.byType(SearchData), findsOneWidget);
-      expect(find.byType(SearchButton), findsOneWidget);
+        // Assert
+        // Assert
+        // Verify child widgets exist
+        expect(find.byType(SearchData), findsOneWidget);
+        expect(find.byType(SearchButton), findsOneWidget);
 
-      // Verify widgets are wrapped in a Column
-      final columnFinder = find.ancestor(
-        of: find.byType(SearchData),
-        matching: find.byType(Column),
-      );
-      expect(columnFinder, findsOneWidget);
+        // Verify widgets are wrapped in a Column
+        final columnFinder = find.ancestor(
+          of: find.byType(SearchData),
+          matching: find.byType(Column),
+        );
+        expect(columnFinder, findsOneWidget);
 
-      // Verify the outer padding values by finding the first Padding widget
-      // that's an ancestor of the Column
-      final outerPaddingFinder = find
-          .ancestor(
-            of: columnFinder,
-            matching: find.byType(Padding),
-          )
-          .first;
-      final Padding paddingWidget = tester.widget(outerPaddingFinder);
+        // Verify the outer padding values by finding the first Padding widget
+        // that's an ancestor of the Column
+        final outerPaddingFinder =
+            find
+                .ancestor(of: columnFinder, matching: find.byType(Padding))
+                .first;
+        final Padding paddingWidget = tester.widget(outerPaddingFinder);
 
-      expect(
+        expect(
           paddingWidget.padding,
-          const EdgeInsets.only(
-            left: 20.0,
-            right: 20.0,
-            bottom: 40.0,
-          ));
-    });
+          const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 40.0),
+        );
+      },
+    );
 
-    testWidgets('maintains correct widget order in Column',
-        (WidgetTester tester) async {
+    testWidgets('maintains correct widget order in Column', (
+      WidgetTester tester,
+    ) async {
       // Act
       await tester.pumpWidget(createWidgetUnderTest());
 

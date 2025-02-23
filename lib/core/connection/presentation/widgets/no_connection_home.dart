@@ -24,10 +24,10 @@ class _NoConnectionHomeErrorLoadingState
       duration: const Duration(seconds: 2),
       vsync: this,
     )..repeat(reverse: true);
-    _animation = Tween<double>(begin: 0.75, end: 1.0).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
+    _animation = Tween<double>(
+      begin: 0.75,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -41,34 +41,41 @@ class _NoConnectionHomeErrorLoadingState
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocBuilder<InternetCubit, InternetState>(
-        builder: (context, state) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ScaleTransition(
-                scale: _animation,
-                child: Icon(
-                  state is InternetConnected
-                      ? Icons.wifi
-                      : Icons.signal_wifi_off,
-                  size: 100,
-                  color: state is InternetConnected ? Colors.green : Colors.red,
-                ),
+        builder:
+            (context, state) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ScaleTransition(
+                    scale: _animation,
+                    child: Icon(
+                      state is InternetConnected
+                          ? Icons.wifi
+                          : Icons.signal_wifi_off,
+                      size: 100,
+                      color:
+                          state is InternetConnected
+                              ? Colors.green
+                              : Colors.red,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    state is InternetConnected
+                        ? "You're online!"
+                        : "No internet connection",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color:
+                          state is InternetConnected
+                              ? Colors.green
+                              : Colors.red,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(height: 20),
-              Text(
-                state is InternetConnected
-                    ? "You're online!"
-                    : "No internet connection",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: state is InternetConnected ? Colors.green : Colors.red,
-                ),
-              ),
-            ],
-          ),
-        ),
+            ),
       ),
     );
   }

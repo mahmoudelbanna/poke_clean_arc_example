@@ -6,8 +6,7 @@ part 'selected_pokemon_item_state.dart';
 
 class SelectedPokemonItemCubit extends HydratedCubit<SelectedPokemonItemState> {
   SelectedPokemonItemCubit()
-      : super(
-            SelectedPokemonItemState(params: PokemonParams(id: 1.toString())));
+    : super(SelectedPokemonItemState(params: PokemonParams(id: 1.toString())));
 
   void changeParamsId({required int newId}) {
     final newPokemonParams = PokemonParams(id: newId.toString());

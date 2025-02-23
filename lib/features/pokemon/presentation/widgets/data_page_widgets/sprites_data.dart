@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poke_clean_arc_example/poke.dart';
 
 class Sprites extends StatelessWidget {
-  const Sprites({
-    super.key,
-    required this.pokemon,
-  });
+  const Sprites({super.key, required this.pokemon});
 
   final PokemonEntity pokemon;
 
@@ -13,10 +10,7 @@ class Sprites extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          leading: const Text('{ }'),
-          title: const Text(kSprites),
-        ),
+        ListTile(leading: const Text('{ }'), title: const Text(kSprites)),
         _Other_data(pokemon: pokemon),
       ],
     );
@@ -26,7 +20,7 @@ class Sprites extends StatelessWidget {
 // ignore: camel_case_types
 class _Other_data extends StatelessWidget {
   const _Other_data({
-    // ignore: unused_element
+    // ignore: unused_element, unused_element_parameter
     super.key,
     required this.pokemon,
   });
@@ -39,10 +33,7 @@ class _Other_data extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10.0),
       child: Column(
         children: [
-          ListTile(
-            leading: const Text('{ }'),
-            title: const Text(kOther),
-          ),
+          ListTile(leading: const Text('{ }'), title: const Text(kOther)),
           Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Column(
@@ -58,12 +49,14 @@ class _Other_data extends StatelessWidget {
                       ListTile(
                         title: const Text(kFrontDefault),
                         subtitle: SelectableText(
-                            pokemon.sprites.other.officialArtwork.frontDefault),
+                          pokemon.sprites.other.officialArtwork.frontDefault,
+                        ),
                       ),
                       ListTile(
                         title: const Text(kFrontShiny),
                         subtitle: SelectableText(
-                            pokemon.sprites.other.officialArtwork.frontShiny),
+                          pokemon.sprites.other.officialArtwork.frontShiny,
+                        ),
                       ),
                     ],
                   ),

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
-  const NavBar({
-    super.key,
-    required ValueNotifier<int> currentPageIndex,
-  }) : _currentPageIndex = currentPageIndex;
+  const NavBar({super.key, required ValueNotifier<int> currentPageIndex})
+    : _currentPageIndex = currentPageIndex;
 
   final ValueNotifier<int> _currentPageIndex;
 
@@ -22,10 +20,7 @@ class NavBar extends StatelessWidget {
           icon: Icon(Icons.search_outlined),
           label: 'Search',
         ),
-        NavigationDestination(
-          icon: Icon(Icons.menu),
-          label: 'Pokemon',
-        ),
+        NavigationDestination(icon: Icon(Icons.menu), label: 'Pokemon'),
       ],
     );
   }

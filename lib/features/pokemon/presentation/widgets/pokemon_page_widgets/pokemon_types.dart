@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poke_clean_arc_example/poke.dart';
 
 class PokemonTypes extends StatelessWidget {
-  const PokemonTypes({
-    super.key,
-    required this.pokemonTypes,
-  });
+  const PokemonTypes({super.key, required this.pokemonTypes});
 
   final List<TypesEntity> pokemonTypes;
 

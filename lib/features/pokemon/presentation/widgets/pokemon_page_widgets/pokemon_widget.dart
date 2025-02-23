@@ -12,10 +12,7 @@ class PokemonWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          PokemonName(
-            pokemonId: pokemon.id,
-            pokemonName: pokemon.name,
-          ),
+          PokemonName(pokemonId: pokemon.id, pokemonName: pokemon.name),
           PokemonTypes(pokemonTypes: pokemon.types),
         ],
       ),
